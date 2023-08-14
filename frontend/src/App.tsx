@@ -1,4 +1,4 @@
-import { Header, MainLayout } from './components';
+import { Header, MainLayout, TodoSection } from './components';
 
 interface DataApp {
   header: Header;
@@ -15,6 +15,7 @@ export const App = () => {
   return (
     <MainLayout>
       <Header {...header} />
+      <TodoSection />
     </MainLayout>
   );
 };
