@@ -9,7 +9,7 @@ interface MainLayout {
 export const MainLayout: FC<MainLayout> = ({ children }) => (
   <div>
     <Navbar />
-    <div className="spacing">{children}</div>
+    <div className="spacing mainLayout">{children}</div>
     <Footer />
   </div>
 );
