@@ -1,0 +1,42 @@
+@use '../global/mixins' as m;
+@use '../global/functions' as fn;
+
+.spacing {
+  max-width: 144rem;
+  margin: 0 auto;
+}
+
+.disableScroll {
+  overflow-y: hidden;
+}
+
+%gapMovil {
+  gap: 3rem;
+}
+
+.header {
+  padding: 5rem 2rem;
+  max-width: 144rem;
+  margin: 0 auto;
+  text-align: center;
+
+  @include m.mediaQueries(fn.breakpoint('tablet')) {
+    padding: 5rem 4rem;
+  }
+
+  @include m.mediaQueries(fn.breakpoint('desktop-lg')) {
+    padding: 0 5rem;
+    text-align: left;
+  }
+
+  &__description {
+    line-height: 28px;
+    @include m.mediaQueries(fn.breakpoint('desktop-lg')) {
+      width: 80rem;
+    }
+  }
+}
+
+.sectionContainer {
+  padding: 5rem 0rem;
+}

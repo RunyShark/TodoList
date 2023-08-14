@@ -1,9 +1,9 @@
-import React from 'react';
+import { MainLayout } from './components';
 
 export const App = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>App</h1>
-    </div>
+    </MainLayout>
   );
 };
