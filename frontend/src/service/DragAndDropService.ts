@@ -2,7 +2,7 @@ enum DragItem {
   key = 'IdElement',
 }
 
-type DragEvent = React.DragEvent<HTMLDivElement>;
+export type DragEvent = React.DragEvent<HTMLDivElement>;
 
 class DragAndDropService {
   onDragStart(event: DragEvent, id: string) {
