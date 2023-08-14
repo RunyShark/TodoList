@@ -6,7 +6,7 @@ export interface Header {
 }
 
 export const Header: FC<Header> = ({ title, subtitle }) => (
-  <header>
+  <header className="header">
     <h1>{title}</h1>
     <h6>{subtitle}</h6>
   </header>

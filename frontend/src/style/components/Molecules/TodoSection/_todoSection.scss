@@ -1,0 +1,42 @@
+@use '../../../global/mixins' as m;
+@use '../../../global/functions' as fn;
+@import '../../../global/baseTheme';
+
+.todoSection {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 4rem;
+  padding: 0rem 2rem 8rem 2rem;
+
+  @include m.mediaQueries(fn.breakpoint('tablet')) {
+    padding: 0rem 5rem 8rem 5rem;
+    flex-direction: row;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    background: var(--coolBackground);
+    width: 100%;
+    min-height: 10rem;
+    padding: 2.4rem 1.2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 8px 16px rgba(#333, 0.1);
+  }
+
+  &__containerTodo {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 16px;
+    height: 100%;
+  }
+
+  &__todo {
+    font-size: 18px;
+    background: var(--todoBackground);
+    border-radius: 8px;
+    padding: 26px 20px;
+    cursor: pointer;
+    color: var(--todoLetters);
+  }
+}
