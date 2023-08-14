@@ -2,10 +2,19 @@ enum DragItem {
   key = 'IdElement',
 }
 
+type DragEvent = React.DragEvent<HTMLDivElement>;
+
 class DragAndDropService {
-  drag(evt: React.DragEvent<HTMLDivElement>, id: string) {
-    evt.dataTransfer.setData(DragItem.key, id);
-    console.log({ evt, id });
+  onDragStart(event: DragEvent, id: string) {
+    event.dataTransfer.setData(DragItem.key, id);
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  onDrop(event: DragEvent) {
+    return event.dataTransfer.getData(DragItem.key);
   }
 }
 

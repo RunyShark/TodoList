@@ -6,7 +6,7 @@ export const TodoItem: FC<Todo> = ({ title, description, id }) => (
   <div
     className="todoSection__todo"
     draggable
-    onDragStart={(evt) => dragAndDrop.drag(evt, id)}
+    onDragStart={(evt) => dragAndDrop.onDragStart(evt, id)}
   >
     <strong>{title}</strong>
     <p>{description}</p>
