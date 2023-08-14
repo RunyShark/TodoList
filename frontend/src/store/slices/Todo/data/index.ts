@@ -14,24 +14,24 @@ export const dataTodoList: Todo[] = [
     description: 'Test description',
     col: 'pending',
   },
-  {
-    id: helperService.uuid(),
-    title: 'Task 3',
-    description: 'Test description',
-    col: 'completed',
-  },
-  {
-    id: helperService.uuid(),
-    title: 'Task 4',
-    description: 'Test description',
-    col: 'inProgress',
-  },
-  {
-    id: helperService.uuid(),
-    title: 'Task 5',
-    description: 'Test description',
-    col: 'inProgress',
-  },
+  // {
+  //   id: helperService.uuid(),
+  //   title: 'Task 3',
+  //   description: 'Test description',
+  //   col: 'completed',
+  // },
+  // {
+  //   id: helperService.uuid(),
+  //   title: 'Task 4',
+  //   description: 'Test description',
+  //   col: 'inProgress',
+  // },
+  // {
+  //   id: helperService.uuid(),
+  //   title: 'Task 5',
+  //   description: 'Test description',
+  //   col: 'inProgress',
+  // },
 ];
 
 export const dataPending: Todo[] = dataTodoList.filter(
