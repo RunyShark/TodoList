@@ -1,9 +1,20 @@
-import { MainLayout } from './components';
+import { Header, MainLayout } from './components';
+
+interface DataApp {
+  header: Header;
+}
+
+const { header }: DataApp = {
+  header: {
+    title: 'Todo',
+    subtitle: 'Test',
+  },
+};
 
 export const App = () => {
   return (
     <MainLayout>
-      <h1>App</h1>
+      <Header {...header} />
     </MainLayout>
   );
 };
