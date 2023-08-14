@@ -1,0 +1,8 @@
+@use '../../global/functions' as fn;
+@import '../../global/baseTheme';
+
+.footer {
+  background: var(--footerBackground);
+  width: 100%;
+  height: 5vh;
+}
