@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import { Children } from '../../../interfaces/interfaces';
-import { Footer, Navbar } from '../..';
+import { Button, Footer, Navbar } from '../..';
 
 interface MainLayout {
   children: Children;
 }
 
 export const MainLayout: FC<MainLayout> = ({ children }) => (
-  <div>
+  <div style={{ position: 'relative' }}>
     <Navbar />
     <div className="spacing mainLayout">{children}</div>
+    <Button>AdTodo btn</Button>
     <Footer />
   </div>
 );

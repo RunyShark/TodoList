@@ -1,0 +1,51 @@
+@import '../../../global/theme';
+
+.button {
+  font-family: 'Inter-semibold';
+  display: inline-flex;
+  padding: 0.8rem 1.4rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 0.8rem;
+  box-shadow: var(--activeBoxShadowButton);
+
+  font-style: normal;
+  font-weight: 600;
+  background: transparent;
+  transition: 0.5s;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  box-sizing: border-box;
+  vertical-align: middle;
+  border: 1px solid rgba(145, 158, 171, 0.08);
+  &--sm {
+    padding: 0.8rem 1.4rem;
+    line-height: 2rem;
+    font-size: 1.4rem;
+  }
+
+  &--md {
+    padding: 1rem 1.6rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+
+  &--lg {
+    padding: 1rem 1.8rem;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+
+  &--xl {
+    padding: 1.6rem 2.8rem;
+    gap: 1.2rem;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+  }
+
+  &__active {
+    background: var(--activeBackgroundButton);
+  }
+}

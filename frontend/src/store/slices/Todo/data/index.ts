@@ -19,12 +19,12 @@ export const dataTodoList: Todo[] = [
     description: 'Test description',
     col: 'completed',
   },
-  // {
-  //   id:'1',
-  //   title: 'Task 4',
-  //   description: 'Test description',
-  //   col: 'inProgress',
-  // },
+  {
+    id: '4',
+    title: 'Task 4',
+    description: 'Test description',
+    col: 'inProgress',
+  },
 ];
 
 export const dataPending: Todo[] = dataTodoList.filter(
