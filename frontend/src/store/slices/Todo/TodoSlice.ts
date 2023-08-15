@@ -14,6 +14,11 @@ export interface TodoState {
   todoList: Todo[] | [];
   cols: Cols;
   httpControl: HttpControl;
+  controlClient: ControlClient;
+}
+
+interface ControlClient {
+  isOpenModal: boolean;
 }
 
 interface Cols {
@@ -50,6 +55,9 @@ const initialState: TodoState = {
     isLoading: false,
     isError: null,
   },
+  controlClient: {
+    isOpenModal: false,
+  },
 };
 
 export const TodoSlice = createSlice({
@@ -75,11 +83,14 @@ export const TodoSlice = createSlice({
         return todo;
       });
     },
+    actionModal(state) {
+      state.controlClient.isOpenModal = !state.controlClient.isOpenModal;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getTodoList, statusChangeTodo, accommodateTasks } =
+export const { getTodoList, statusChangeTodo, accommodateTasks, actionModal } =
   TodoSlice.actions;
 
 export default TodoSlice.reducer;
