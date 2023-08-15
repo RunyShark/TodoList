@@ -26,7 +26,13 @@ export const useTodo = () => {
     getTodo();
   };
 
-  const deleteTodo = async (_id: string) => console.log('delete todo', _id);
+  const deleteTodo = async (_id: string) => {
+    await apiService.https({
+      type: HTTP_METHOD.DELETE,
+      endpoint: `${Endpoint.TODO}/${_id}`,
+    });
+    getTodo();
+  };
 
   const postTodo = async (payload: Omit<Todo, '_id'>) =>
     console.log('postTodo', payload);
