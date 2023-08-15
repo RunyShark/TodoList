@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
-
+import { DB } from '../db';
 export class TodoController {
+  private DB = new DB();
+
   async getTodo(req: Request, res: Response) {
     res.json({
       message: 'test',
