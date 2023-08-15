@@ -4,7 +4,7 @@ import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal, ViewTodo } from '../..';
 import { useModalControl, useTodo } from '../../../hooks';
 import { EditTodo } from '../../Atoms/EditTodo';
-import { Plus, Status } from '../../Atoms/Icons';
+import { Plus } from '../../Atoms/Icons';
 import { Edit } from '../../Atoms/Icons/General/Edit';
 
 const initialStateAction = {
