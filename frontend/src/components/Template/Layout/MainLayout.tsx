@@ -3,6 +3,7 @@ import { Children } from '../../../interfaces/interfaces';
 import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
 import { useModalControl } from '../../../hooks';
 import { useAppSelector } from '../../../store/hooks';
+import { Plus } from '../../Atoms/Icons';
 
 interface MainLayout {
   children: Children;
@@ -25,7 +26,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
         {children}
         <Button
           className="mainLayout__addTodo"
-          iconEnd={<p>icon</p>}
+          iconEnd={<Plus onClick={closeModal} className="mainLayout__icon" />}
           onClick={openModal}
         />
       </div>

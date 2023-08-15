@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Children } from '../../../interfaces/interfaces';
+import { Plus } from '../../Atoms/Icons';
 interface IModal {
   children: Children;
   open: boolean;
   closeModal: () => void;
 }
-//closeModal
-export const Modal: FC<IModal> = ({ children, open }) => {
+
+export const Modal: FC<IModal> = ({ children, open, closeModal }) => {
   return (
     <>
       {open && (
@@ -14,7 +15,8 @@ export const Modal: FC<IModal> = ({ children, open }) => {
           <div className="modal__container">
             <div className="modal__children">
               <div className="modal__containerElement">
-                <p>icon</p>
+                <Plus onClick={closeModal} className="modal__icon--x" />
+
                 {children}
               </div>
             </div>

@@ -17,7 +17,7 @@ body {
   transition: background 0.2s ease, color 0.4s ease;
   background: var(--background-color);
   color: var(--primary-color);
-  font-family: 'Inter-Regular';
+  font-family: monospace;
   font-size: 1.6rem;
   min-height: 100vh;
 }
@@ -59,14 +59,14 @@ h3,
 h4,
 h6 {
   font-weight: 600;
-  font-family: 'Inter-Medium';
+  font-family: monospace;
   text-transform: capitalize;
 }
 
 h2,
 h5 {
   font-weight: 500;
-  font-family: 'Inter-Medium';
+  font-family: monospace;
   text-transform: capitalize;
 }
 
@@ -147,7 +147,7 @@ h6 {
 }
 
 p {
-  font-family: 'Inter-Regular';
+  font-family: monospace;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;

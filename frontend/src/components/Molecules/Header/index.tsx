@@ -6,38 +6,26 @@ export interface Header {
   subtitle: string;
 }
 
-export const Header: FC<Header> = ({ title, subtitle }) => {
+export const Header: FC<Header> = ({ title }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="header">
-      <h1>{title}</h1>
       <div className="header__container">
-        <h6>{subtitle}</h6>
-        <div>
-          <Button
-            className="header__button"
-            iconEnd={
-              <p>icon</p>
-              // <FontAwesomeIcon icon={faQuestion} className="header__icon" />
-            }
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        </div>
+        <h1>{title}</h1>
+        <Button
+          className="header__button"
+          iconEnd={<h3>?</h3>}
+          onClick={() => setIsOpen(!isOpen)}
+        />
       </div>
 
       <p className={`header__helper ${isOpen && 'header__helper--active'}`}>
-        Todo list: 'Tareas Por Hacer', 'Tareas en Progreso' y 'Tareas
-        Realizadas'. Estos tableros permiten gestionar el estado de tus tareas
-        de manera visual e intuitiva. Puedes arrastrar y soltar las tareas de un
-        tablero a otro según su progreso. Si deseas obtener más detalles sobre
-        una tarea en particular, basta con realizar doble clic sobre la tarjeta
-        correspondiente. En caso de que necesites eliminar una tarea,
-        simplemente haz clic en el ícono en forma de 'x'. Para realizar
-        ediciones en la tarea, accede al ícono en forma de 'libreta'. Agregar
-        una nueva tarea es igualmente sencillo. Solo tienes que hacer clic en el
-        botón con el símbolo '+' y podrás empezar a definir los detalles de la
-        tarea que deseas incluir.
+        Se trata de una herramienta de gestión de tareas con tableros visuales.
+        Los tableros son 'Tareas Por Hacer', 'Tareas en Progreso' y 'Tareas
+        Realizadas'. Puedes mover tareas entre ellos arrastrando y soltando.
+        Doble clic para más detalles, 'x' para eliminar, 'libreta' para editar.
+        Agregar tareas con el botón '+'.
       </p>
     </header>
   );
