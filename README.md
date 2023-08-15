@@ -82,4 +82,4 @@ El archivo .env.example incluye todas las variables de entorno (envs) necesarias
 
 Asegúrate de configurar adecuadamente las variables de entorno con los valores específicos requeridos por tu proyecto.
 
-#### Siguiendo todos los pasos mencionados anteriormente, estarás listo para ejecutar el proyecto
+#### Siguiendo todos los pasos mencionados anteriormente, estarás listo el proyecto para funcionar
