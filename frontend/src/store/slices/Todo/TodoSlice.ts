@@ -60,6 +60,7 @@ export const TodoSlice = createSlice({
   reducers: {
     hydrateTodoList(state, { payload }: PayloadAction<Todo[]>) {
       state.todoList = payload;
+      state.httpControl.isLoading = false;
     },
     accommodateTasks(state) {
       state.cols = {
@@ -86,6 +87,10 @@ export const TodoSlice = createSlice({
     addTodo(state, { payload }: PayloadAction<Todo>) {
       state.todoList = [...state.todoList, payload];
     },
+
+    isLoading(state, { payload }: PayloadAction<boolean>) {
+      state.httpControl.isLoading = payload;
+    },
   },
 });
 
@@ -96,6 +101,7 @@ export const {
   accommodateTasks,
   actionModal,
   addTodo,
+  isLoading,
 } = TodoSlice.actions;
 
 export default TodoSlice.reducer;

@@ -3,13 +3,21 @@ import ReactDOM from 'react-dom/client';
 import { store } from './store/store.ts';
 import { Provider } from 'react-redux';
 import { App } from './App.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './style/styles.scss';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+// Create a client
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
