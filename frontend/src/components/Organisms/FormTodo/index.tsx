@@ -62,16 +62,19 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
       dispatch(accommodateTasks());
       dispatch(actionModal());
       setAddTodo(initialFormState);
+      setIsError({
+        ...isError,
+        error: false,
+      });
     } catch (error) {
       console.log('Error algo salio mal');
     }
   };
 
   const updateTodo = async () => {
-    //edit
     if (!title || !description || !col || !_id) {
       setIsError({
-        ...isError,
+        message: 'Para actualizar son necesarios todos los cambios',
         error: true,
       });
       return;
@@ -84,22 +87,18 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
     dispatch(accommodateTasks());
     dispatch(actionModal());
     setAddTodo(initialFormState);
+    setIsError({
+      ...isError,
+      error: false,
+    });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!editTodo) {
       await saveTodo();
-      setIsError({
-        ...isError,
-        error: false,
-      });
     } else {
       await updateTodo();
-      setIsError({
-        ...isError,
-        error: false,
-      });
     }
   };
 

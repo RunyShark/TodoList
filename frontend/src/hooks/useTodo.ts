@@ -34,8 +34,14 @@ export const useTodo = () => {
     getTodo();
   };
 
-  const postTodo = async (payload: Omit<Todo, '_id'>) =>
-    console.log('postTodo', payload);
+  const postTodo = async (payload: Omit<Todo, '_id'>) => {
+    await apiService.https({
+      type: HTTP_METHOD.POST,
+      endpoint: Endpoint.TODO,
+      payload,
+    });
+    getTodo();
+  };
 
   return { getTodo, putTodo, deleteTodo, postTodo };
 };
