@@ -5,4 +5,16 @@
   background: var(--footerBackground);
   width: 100%;
   height: 10vh;
+
+  &__logo {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  &__container {
+    padding: 3rem 0 0;
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+  }
 }

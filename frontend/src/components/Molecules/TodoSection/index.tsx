@@ -1,7 +1,6 @@
 import { ColTodo } from '../..';
 import { helperService } from '../../../service';
 import { useAppSelector } from '../../../store/hooks';
-import { Col, Todo } from '../../../store/slices/Todo/TodoSlice';
 
 interface ColData extends ColTodo {
   id: string;
@@ -38,11 +37,13 @@ export const TodoSection = () => {
 
   return (
     <section>
-      <div className="todoSection">
-        {ColData.map((todo) => (
-          <ColTodo key={todo.id} {...todo} />
-        ))}
-      </div>
+      <main>
+        <div className="todoSection">
+          {ColData.map((todo) => (
+            <ColTodo key={todo.id} {...todo} />
+          ))}
+        </div>
+      </main>
     </section>
   );
 };

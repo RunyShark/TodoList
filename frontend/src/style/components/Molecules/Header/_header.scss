@@ -1,0 +1,33 @@
+.header {
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  &__helper {
+    margin: 0;
+    margin-bottom: 5rem;
+    opacity: 0;
+    transition: 0.5s;
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__button {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    background: var(--AddButtonNormal);
+    transition: 0.5s;
+    &:hover {
+      transition: 0.5s;
+      background: var(--AddHoverButton);
+    }
+  }
+
+  &__icon {
+    color: #fff;
+  }
+}
