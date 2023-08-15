@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Process, helperService } from '../helper';
 
 enum StatusMongooseDb {
   disconnected = 0,
@@ -13,7 +14,6 @@ const mongoConnection = {
 
 export class DB {
   private static instance: DB;
-  private DB_API = process.env.MONGO_URL || '';
 
   constructor() {
     return DB.instance || (DB.instance = this);
@@ -35,8 +35,11 @@ export class DB {
 
       await mongoose.disconnect();
     }
-
-    await mongoose.connect(this.DB_API);
+    console.log(
+      'Ya estabamos conectados db',
+      helperService.getProcess(Process.MONGO_URL)
+    );
+    await mongoose.connect(helperService.getProcess(Process.MONGO_URL) || '');
     mongoConnection.isConnected = StatusMongooseDb.connected;
   }
 

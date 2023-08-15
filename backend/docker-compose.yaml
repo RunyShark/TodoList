@@ -1,7 +1,7 @@
 services:
-  entriesdb:
+  todoDb:
     image: mongo:5.0.0
-    container_name: entries-database
+    container_name: todo-db
     ports:
       - 27017:27017
     volumes:
