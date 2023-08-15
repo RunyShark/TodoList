@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSubtitles, faArrowDown } from '@fortawesome/pro-duotone-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import {
   Col,
   Todo,
@@ -123,7 +123,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
             placeholder="Titulo"
           />
           <FontAwesomeIcon
-            icon={faSubtitles}
+            icon={faArrowDown}
             className="formTodo__icon"
             size="lg"
           />
@@ -140,7 +140,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
           />
           {/* <label>description</label> */}
           <FontAwesomeIcon
-            icon={faSubtitles}
+            icon={faArrowDown}
             className="formTodo__icon"
             size="lg"
           />
