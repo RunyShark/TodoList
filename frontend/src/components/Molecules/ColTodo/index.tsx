@@ -26,7 +26,7 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col }) => {
       <h4>{title}</h4>
       <div
         className="todoSection__containerTodo"
-        onDragOver={dragAndDrop.onDragOver}
+        onDragOver={(evt) => evt.preventDefault()}
         onDrop={(event) => onDrop(event, col)}
       >
         {todo.map((todo) => (

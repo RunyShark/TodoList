@@ -1,34 +1,27 @@
-import { helperService } from '../../../../service/HelperService';
 import { Todo } from '../TodoSlice';
 
 export const dataTodoList: Todo[] = [
   {
-    id: helperService.uuid(),
+    id: '1',
     title: 'Task 1',
     description: 'Test description',
     col: 'pending',
   },
   {
-    id: helperService.uuid(),
+    id: '2',
     title: 'Task 2',
     description: 'Test description',
-    col: 'pending',
+    col: 'inProgress',
+  },
+  {
+    id: '3',
+    title: 'Task 3',
+    description: 'Test description',
+    col: 'completed',
   },
   // {
-  //   id: helperService.uuid(),
-  //   title: 'Task 3',
-  //   description: 'Test description',
-  //   col: 'completed',
-  // },
-  // {
-  //   id: helperService.uuid(),
+  //   id:'1',
   //   title: 'Task 4',
-  //   description: 'Test description',
-  //   col: 'inProgress',
-  // },
-  // {
-  //   id: helperService.uuid(),
-  //   title: 'Task 5',
   //   description: 'Test description',
   //   col: 'inProgress',
   // },

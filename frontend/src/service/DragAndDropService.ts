@@ -14,6 +14,7 @@ class DragAndDropService {
   }
 
   onDrop(event: DragEvent) {
+    event.preventDefault();
     return event.dataTransfer.getData(DragItem.key);
   }
 }

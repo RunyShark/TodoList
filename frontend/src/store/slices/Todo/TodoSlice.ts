@@ -43,8 +43,8 @@ const initialState: TodoState = {
   todoList: dataTodoList,
   cols: {
     pending: dataPending,
-    completed: dataInProgress,
-    inProgress: dataCompleted,
+    inProgress: dataInProgress,
+    completed: dataCompleted,
   },
   httpControl: {
     isLoading: false,
