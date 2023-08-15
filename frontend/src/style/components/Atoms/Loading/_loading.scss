@@ -20,7 +20,7 @@
   }
 
   &::before {
-    border-top-color: #007afe;
+    border-top-color: var(--navbarBackground);
     z-index: 1;
     animation: spin 1s linear infinite;
   }
