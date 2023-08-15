@@ -1,4 +1,5 @@
 import express from 'express';
+import { route } from '../routes';
 const { PORT_SERVER } = process.env;
 
 export class Server {
@@ -10,7 +11,12 @@ export class Server {
   };
 
   constructor() {
+    this.route();
     return Server.instance || (Server.instance = this);
+  }
+
+  private route() {
+    this.app.use(this.path.routeTodo, route);
   }
 
   public init() {
