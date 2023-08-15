@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSubtitles, faArrowDown } from '@fortawesome/pro-duotone-svg-icons';
 import {
@@ -9,7 +9,6 @@ import {
 } from '../../../store/slices/Todo/TodoSlice';
 import { Button } from '../..';
 import { useAppDispatch } from '../../../store/hooks';
-import { helperService } from '../../../service';
 import { useTodo } from '../../../hooks';
 
 export type InitialFormSState = Partial<Todo>;
@@ -33,14 +32,13 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
 }) => {
   const { postTodo, putTodo, getTodo } = useTodo();
   const dispatch = useAppDispatch();
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState({
+    error: false,
+    message: 'Todo los campos son necesario',
+  });
   const [isOpenSelect, setIsOpenSelect] = useState(false);
-  const [{ title, description, col }, setAddTodo] =
+  const [{ title, description, col, _id }, setAddTodo] =
     useState<InitialFormSState>(formState);
-
-  useEffect(() => {
-    setAddTodo(formState);
-  }, [formState]);
 
   const handleChange = ({
     target: { value, name },
@@ -52,7 +50,10 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
 
   const saveTodo = async () => {
     if (!title || !description || !col) {
-      setIsError(true);
+      setIsError({
+        ...isError,
+        error: true,
+      });
       return;
     }
     try {
@@ -68,11 +69,14 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
 
   const updateTodo = async () => {
     //edit
-    if (!title || !description || !col) {
-      setIsError(true);
+    if (!title || !description || !col || !_id) {
+      setIsError({
+        ...isError,
+        error: true,
+      });
       return;
     }
-    await putTodo(helperService.uuid(), {
+    await putTodo(_id, {
       title,
       description,
       col,
@@ -86,10 +90,16 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
     event.preventDefault();
     if (!editTodo) {
       await saveTodo();
-      setIsError(false);
+      setIsError({
+        ...isError,
+        error: false,
+      });
     } else {
       await updateTodo();
-      setIsError(false);
+      setIsError({
+        ...isError,
+        error: false,
+      });
     }
   };
 
@@ -98,10 +108,10 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
       <h3>{formTitle}</h3>
       <h5
         className={`formTodo__messageError ${
-          (isError && 'formTodo__messageError--active') || ''
+          (isError.error && 'formTodo__messageError--active') || ''
         }`.trim()}
       >
-        Todo los campos son necesario
+        {isError.message}
       </h5>
       <form className="formTodo" onSubmit={handleSubmit}>
         <div className="formTodo__container">

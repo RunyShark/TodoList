@@ -11,5 +11,6 @@ export const EditTodo: FC<EditTodo> = ({ InitialFormState }) => (
   <FormTodo
     formTitle="Puedes editar la tarea seleccionada"
     formState={InitialFormState}
+    editTodo
   />
 );
