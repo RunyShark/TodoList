@@ -1,8 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Drop } from './action';
-// import type { PayloadAction } from '@reduxjs/toolkit';
-
-export type Col = 'pending' | 'completed' | 'inProgress';
 
 export interface TodoState {
   todoList: Todo[] | [];
@@ -53,6 +50,7 @@ const initialState: TodoState = {
     isOpenModal: false,
   },
 };
+export type Col = 'pending' | 'completed' | 'inProgress';
 
 export const TodoSlice = createSlice({
   name: 'todo',
@@ -72,7 +70,7 @@ export const TodoSlice = createSlice({
     statusChangeTodo(state, { payload: { item, col } }: PayloadAction<Drop>) {
       state.todoList = state.todoList.map((todo) => {
         if (todo._id === item) {
-          todo = {
+          return {
             ...todo,
             col,
           };
