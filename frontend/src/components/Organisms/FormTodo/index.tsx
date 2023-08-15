@@ -6,7 +6,6 @@ import {
   Todo,
   accommodateTasks,
   actionModal,
-  addTodo,
 } from '../../../store/slices/Todo/TodoSlice';
 import { Button } from '../..';
 import { useAppDispatch } from '../../../store/hooks';
@@ -32,7 +31,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
   formTitle = 'Crea una nueva tarea',
   editTodo = false,
 }) => {
-  const { postTodo, putTodo } = useTodo();
+  const { postTodo, putTodo, getTodo } = useTodo();
   const dispatch = useAppDispatch();
   const [isError, setIsError] = useState(false);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -51,32 +50,46 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
       [name]: value,
     }));
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const saveTodo = async () => {
     if (!title || !description || !col) {
       setIsError(true);
       return;
     }
-    setIsError(false);
-
-    if (!editTodo) {
-      dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
-      await postTodo({ title, description, col, id: helperService.uuid() });
-      dispatch(accommodateTasks());
-      dispatch(actionModal()); //fix
-      setAddTodo(initialFormState);
-    } else {
-      //edit
-      dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
-      await putTodo(helperService.uuid(), {
-        title,
-        description,
-        col,
-        id: helperService.uuid(),
-      });
+    try {
+      await postTodo({ title, description, col });
+      await getTodo();
       dispatch(accommodateTasks());
       dispatch(actionModal());
       setAddTodo(initialFormState);
+    } catch (error) {
+      console.log('Error algo salio mal');
+    }
+  };
+
+  const updateTodo = async () => {
+    //edit
+    if (!title || !description || !col) {
+      setIsError(true);
+      return;
+    }
+    await putTodo(helperService.uuid(), {
+      title,
+      description,
+      col,
+    });
+    dispatch(accommodateTasks());
+    dispatch(actionModal());
+    setAddTodo(initialFormState);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!editTodo) {
+      await saveTodo();
+      setIsError(false);
+    } else {
+      await updateTodo();
+      setIsError(false);
     }
   };
 

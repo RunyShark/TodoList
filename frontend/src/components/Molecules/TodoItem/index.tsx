@@ -12,13 +12,13 @@ const initialStateAction = {
   delete: false,
 };
 
-export const TodoItem: FC<Todo> = ({ title, description, id, col }) => {
+export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
   const { closeModal, isModalOpen, openModal } = useModalControl();
   const [action, setAction] = useState(initialStateAction);
   const { deleteTodo } = useTodo();
 
   const handelAccept = () => (
-    deleteTodo(id), closeModal(), setAction(initialStateAction)
+    deleteTodo(_id), closeModal(), setAction(initialStateAction)
   );
   const handelCancel = () => (closeModal(), setAction(initialStateAction));
 
@@ -35,7 +35,7 @@ export const TodoItem: FC<Todo> = ({ title, description, id, col }) => {
     <div
       className="todoSection__todo"
       draggable
-      onDragStart={(event) => dragAndDrop.onDragStart(event, id)}
+      onDragStart={(event) => dragAndDrop.onDragStart(event, _id)}
     >
       <FontAwesomeIcon
         icon={faX}
@@ -59,7 +59,7 @@ export const TodoItem: FC<Todo> = ({ title, description, id, col }) => {
         )}
         {action.edit && (
           <EditTodo
-            InitialFormState={{ title, description, id, col }}
+            InitialFormState={{ title, description, _id, col }}
             handelAccept={handelAccept}
             handelCancel={handelCancel}
           />

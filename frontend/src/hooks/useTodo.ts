@@ -1,14 +1,29 @@
-import { Todo } from '../store/slices/Todo/TodoSlice';
+import { Endpoint, apiService } from '../api';
+import { useAppDispatch } from '../store/hooks';
+import {
+  Todo,
+  accommodateTasks,
+  hydrateTodoList,
+} from '../store/slices/Todo/TodoSlice';
 
 export const useTodo = () => {
-  const getTodo = async () => console.log('getTodo');
+  const dispatch = useAppDispatch();
 
-  const putTodo = async (id: string, payload: Partial<Todo>) =>
-    console.log('putTodo', { id, payload });
+  const getTodo = async () => {
+    const todos = await apiService.https({
+      endpoint: Endpoint.TODO,
+    });
+    dispatch(hydrateTodoList(todos?.data || []));
+    dispatch(accommodateTasks());
+  };
 
-  const deleteTodo = async (id: string) => console.log('delete todo', id);
+  const putTodo = async (_id: string, payload: Partial<Todo>) =>
+    console.log('putTodo', { _id, payload });
 
-  const postTodo = async (payload: Todo) => console.log('postTodo', payload);
+  const deleteTodo = async (_id: string) => console.log('delete todo', _id);
+
+  const postTodo = async (payload: Omit<Todo, '_id'>) =>
+    console.log('postTodo', payload);
 
   return { getTodo, putTodo, deleteTodo, postTodo };
 };

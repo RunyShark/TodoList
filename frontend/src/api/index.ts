@@ -1,32 +1,26 @@
 import Axios from 'axios';
 
-export const enum HTTP_METHOD {
+export enum HTTP_METHOD {
   GET = 'get',
   POST = 'post',
   PUT = 'put',
 }
 
-export interface IHttps {
-  type: HTTP_METHOD;
-  endpoint: string;
-  payload: string;
-  config: string;
+export enum Endpoint {
+  TODO = '/todo',
 }
 
-export class ApiService {
-  private static instance: ApiService;
+export interface IHttps {
+  type?: HTTP_METHOD;
+  endpoint: string;
+  payload?: string;
+  config?: string;
+}
+
+class ApiService {
   private api = Axios.create({ baseURL: import.meta.env.VITE_API_URL });
-  private endpoint = '/todo';
 
-  get getEndpoint() {
-    return this.endpoint;
-  }
-
-  constructor() {
-    return ApiService.instance || (ApiService.instance = this);
-  }
-
-  public async https({ endpoint, payload, type }: IHttps) {
+  public async https({ endpoint, type = HTTP_METHOD.GET, payload }: IHttps) {
     try {
       return await this.api[type](endpoint, payload);
     } catch (error) {
@@ -34,3 +28,5 @@ export class ApiService {
     }
   }
 }
+
+export const apiService = new ApiService();

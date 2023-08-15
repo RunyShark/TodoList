@@ -1,10 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import {
-  dataCompleted,
-  dataInProgress,
-  dataPending,
-  dataTodoList,
-} from './data';
 import { Drop } from './action';
 // import type { PayloadAction } from '@reduxjs/toolkit';
 
@@ -28,7 +22,7 @@ interface Cols {
 }
 
 export interface Todo {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   col: Col;
@@ -45,11 +39,11 @@ interface Error {
 }
 
 const initialState: TodoState = {
-  todoList: dataTodoList,
+  todoList: [],
   cols: {
-    pending: dataPending,
-    inProgress: dataInProgress,
-    completed: dataCompleted,
+    pending: [],
+    inProgress: [],
+    completed: [],
   },
   httpControl: {
     isLoading: false,
@@ -64,7 +58,9 @@ export const TodoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    getTodoList() {},
+    hydrateTodoList(state, { payload }: PayloadAction<Todo[]>) {
+      state.todoList = payload;
+    },
     accommodateTasks(state) {
       state.cols = {
         completed: state.todoList.filter((todo) => todo.col === 'completed'),
@@ -74,7 +70,7 @@ export const TodoSlice = createSlice({
     },
     statusChangeTodo(state, { payload: { item, col } }: PayloadAction<Drop>) {
       state.todoList = state.todoList.map((todo) => {
-        if (todo.id === item) {
+        if (todo._id === item) {
           todo = {
             ...todo,
             col,
@@ -95,7 +91,7 @@ export const TodoSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  getTodoList,
+  hydrateTodoList,
   statusChangeTodo,
   accommodateTasks,
   actionModal,

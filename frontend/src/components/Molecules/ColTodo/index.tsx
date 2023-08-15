@@ -30,7 +30,7 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col }) => {
       <h4>{title}</h4>
       <div className="todoSection__containerTodo">
         {todo.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
+          <TodoItem key={todo._id} {...todo} />
         ))}
       </div>
     </div>
