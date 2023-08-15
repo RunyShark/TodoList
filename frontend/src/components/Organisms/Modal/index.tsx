@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/pro-duotone-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { Children } from '../../../interfaces/interfaces';
 interface IModal {
   children: Children;

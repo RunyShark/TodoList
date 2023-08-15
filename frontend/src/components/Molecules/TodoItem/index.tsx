@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faSquarePen } from '@fortawesome/pro-duotone-svg-icons';
+import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { Todo } from '../../../store/slices/Todo/TodoSlice';
 import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal } from '../..';
