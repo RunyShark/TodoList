@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { Children } from '../../../interfaces/interfaces';
 import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/pro-duotone-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useModalControl } from '../../../hooks';
 import { useAppSelector } from '../../../store/hooks';
 
@@ -26,7 +26,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
       <div className="spacing mainLayout">
         {children}
         <Button
-          className="mainLayout__addTodo "
+          className="mainLayout__addTodo"
           iconEnd={<FontAwesomeIcon icon={faPlus} size="xl" />}
           onClick={openModal}
         />
