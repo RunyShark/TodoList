@@ -15,17 +15,22 @@ export interface IHttps {
 
 export class ApiService {
   private static instance: ApiService;
-  private api = Axios.create({ baseURL: '' });
+  private api = Axios.create({ baseURL: import.meta.env.VITE_API_URL });
+  private endpoint = '/todo';
+
+  get getEndpoint() {
+    return this.endpoint;
+  }
 
   constructor() {
     return ApiService.instance || (ApiService.instance = this);
   }
 
-  //Todo type T props: IHttps
-  public async https() {
-    // try {
-    // } catch (error) {
-    // } finally {
-    // }
+  public async https({ endpoint, payload, type }: IHttps) {
+    try {
+      return await this.api[type](endpoint, payload);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
