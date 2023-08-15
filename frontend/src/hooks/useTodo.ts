@@ -1,29 +1,17 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Endpoint, HTTP_METHOD, apiService } from '../api';
-import { useAppDispatch } from '../store/hooks';
-import {
-  Todo,
-  accommodateTasks,
-  hydrateTodoList,
-} from '../store/slices/Todo/TodoSlice';
+import { Todo } from '../store/slices/Todo/TodoSlice';
+import { CACHE_KEY } from '.';
 
 export const useTodo = () => {
-  const dispatch = useAppDispatch();
-
-  const getTodo = async () => {
-    const todo = await apiService.https({
-      endpoint: Endpoint.TODO,
-    });
-    dispatch(hydrateTodoList(todo?.data || []));
-    dispatch(accommodateTasks());
-  };
-
+  const queryClient = useQueryClient();
   const putTodo = async (_id: string, payload: Partial<Todo>) => {
     await apiService.https({
       type: HTTP_METHOD.PUT,
       endpoint: `${Endpoint.TODO}/${_id}`,
       payload,
     });
-    getTodo();
+    queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
   };
 
   const deleteTodo = async (_id: string) => {
@@ -31,7 +19,7 @@ export const useTodo = () => {
       type: HTTP_METHOD.DELETE,
       endpoint: `${Endpoint.TODO}/${_id}`,
     });
-    getTodo();
+    queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
   };
 
   const postTodo = async (payload: Omit<Todo, '_id'>) => {
@@ -40,8 +28,8 @@ export const useTodo = () => {
       endpoint: Endpoint.TODO,
       payload,
     });
-    getTodo();
+    queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
   };
 
-  return { getTodo, putTodo, deleteTodo, postTodo };
+  return { putTodo, deleteTodo, postTodo };
 };
