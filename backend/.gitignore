@@ -1,3 +1,8 @@
+
+node_modules
+.env
+package-lock.json
+.mongo
 # Logs
 logs
 *.log
@@ -23,3 +28,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
