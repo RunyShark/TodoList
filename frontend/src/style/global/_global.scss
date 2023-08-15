@@ -20,7 +20,6 @@ body {
   font-family: 'Inter-Regular';
   font-size: 1.6rem;
   min-height: 100vh;
-  text-transform: capitalize;
 }
 
 ::-webkit-scrollbar {
@@ -61,12 +60,14 @@ h4,
 h6 {
   font-weight: 600;
   font-family: 'Inter-Medium';
+  text-transform: capitalize;
 }
 
 h2,
 h5 {
   font-weight: 500;
   font-family: 'Inter-Medium';
+  text-transform: capitalize;
 }
 
 h1 {

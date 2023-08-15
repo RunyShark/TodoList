@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faSquarePen } from '@fortawesome/pro-duotone-svg-icons';
 import { Todo } from '../../../store/slices/Todo/TodoSlice';
 import { dragAndDrop } from '../../../service';
-import { DeleteTodo, Modal } from '../..';
+import { DeleteTodo, Modal, ViewTodo } from '../..';
 import { useModalControl, useTodo } from '../../../hooks';
 import { EditTodo } from '../../Atoms/EditTodo';
 
 const initialStateAction = {
   edit: false,
   delete: false,
+  view: false,
 };
 
 export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
@@ -21,6 +22,11 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
     deleteTodo(_id), closeModal(), setAction(initialStateAction)
   );
   const handelCancel = () => (closeModal(), setAction(initialStateAction));
+
+  const viewModal = () => {
+    setAction({ ...action, view: true });
+    openModal();
+  };
 
   const handelEdit = () => {
     setAction({ ...action, edit: true });
@@ -36,33 +42,37 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
       className="todoSection__todo"
       draggable
       onDragStart={(event) => dragAndDrop.onDragStart(event, _id)}
+      onDoubleClick={viewModal}
     >
-      <FontAwesomeIcon
-        icon={faX}
-        className="modal__icon"
-        size="2x"
-        onClick={handelDelete}
-      />
-      <FontAwesomeIcon
-        icon={faSquarePen}
-        className="modal__icon"
-        onClick={handelEdit}
-      />
-      <strong>{title}</strong>
-      <p>{description}</p>
+      <div className="todoSection__actions">
+        <FontAwesomeIcon
+          icon={faSquarePen}
+          className="modal__icon"
+          onClick={handelEdit}
+        />
+        <FontAwesomeIcon
+          icon={faX}
+          className="modal__icon"
+          size="2x"
+          onClick={handelDelete}
+        />
+      </div>
+
+      <h5 className="todoSection__title">{title}</h5>
+      <p className="todoSection__text">{description}</p>
       <Modal
         open={isModalOpen}
         closeModal={() => (closeModal(), setAction(initialStateAction))}
       >
+        {action.view && (
+          <ViewTodo InitialFormState={{ title, description, _id, col }} />
+        )}
+
         {action.delete && (
           <DeleteTodo handelAccept={handelAccept} handelCancel={handelCancel} />
         )}
         {action.edit && (
-          <EditTodo
-            InitialFormState={{ title, description, _id, col }}
-            handelAccept={handelAccept}
-            handelCancel={handelCancel}
-          />
+          <EditTodo InitialFormState={{ title, description, _id, col }} />
         )}
       </Modal>
     </div>

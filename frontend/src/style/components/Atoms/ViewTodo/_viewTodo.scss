@@ -1,0 +1,17 @@
+@use '../../../global/mixins' as m;
+@use '../../../global/functions' as fn;
+@import '../../../global/baseTheme';
+
+.viewTodo {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  &__campo {
+    color: #000;
+    font-weight: 700;
+    &--value {
+      color: fn.theme('gray500');
+      font-weight: 300;
+    }
+  }
+}
