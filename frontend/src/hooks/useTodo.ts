@@ -23,7 +23,6 @@ export const useTodo = () => {
       endpoint: `${Endpoint.TODO}/${_id}`,
       payload,
     });
-
     getTodo();
   };
 
