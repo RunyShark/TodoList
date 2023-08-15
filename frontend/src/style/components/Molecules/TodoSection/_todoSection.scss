@@ -22,7 +22,7 @@
     min-height: 30rem;
     padding: 2.4rem 1.2rem;
     border-radius: 0.8rem;
-    box-shadow: 0 8px 16px rgba(#333, 0.1);
+    box-shadow: 0 8px 16px rgba(#101010, 0.1);
   }
 
   &__actions {
@@ -45,17 +45,19 @@
   }
 
   &__containerTodo {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    grid-gap: 16px;
+    grid-gap: 1.6rem;
     height: 100%;
+    border-radius: 0.8rem;
   }
 
   &__todo {
-    font-size: 18px;
+    font-size: 1.8rem;
     background: var(--todoBackground);
-    border-radius: 8px;
-    padding: 26px 20px;
+    border-radius: 0.4rem;
+    padding: 2.6rem 2rem;
     cursor: pointer;
     color: var(--todoLetters);
   }
