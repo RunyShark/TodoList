@@ -12,11 +12,16 @@ enum ENV {
 export class TodoController {
   private DB = new DB();
 
-  async seedTodo(req: Request, res: Response) {
-    if (helperService.getProcess(Process.NODE_ENV) !== ENV.dev)
-      return res
-        .status(401)
-        .json({ message: 'No tiene acceso a este servicio' });
+  private async ErrorControl(res: Response): Promise<void> {
+    await this.DB.disconnect();
+    res.status(500).json({ message: 'Hubo un problema inesperado.r' });
+  }
+
+  async seedTodo(req: Request, res: Response): Promise<void> {
+    if (helperService.getProcess(Process.NODE_ENV) !== ENV.dev) {
+      res.status(401).json({ message: 'No tiene acceso a este servicio' });
+      return;
+    }
 
     await this.DB.connect();
     await TodoModel.deleteMany();
@@ -26,13 +31,19 @@ export class TodoController {
     res.json({ message: 'Ok' });
   }
 
-  async getTodo(req: Request, res: Response) {
-    res.json({
-      message: 'test',
-    });
+  async getTodo(req: Request, res: Response): Promise<void> {
+    try {
+      await this.DB.connect();
+      const entries = await TodoModel.find().sort({ createdAt: 'ascending' });
+      await this.DB.disconnect();
+
+      res.status(200).json(entries);
+    } catch (error) {
+      this.ErrorControl(res);
+    }
   }
 
-  async postTodo(req: Request, res: Response) {
+  async postTodo(req: Request, res: Response): Promise<void> {
     console.log({ body: req.body });
 
     const newTodo = new TodoModel({
@@ -44,26 +55,57 @@ export class TodoController {
       await newTodo.save();
       await this.DB.disconnect();
 
-      return res.status(201).json(newTodo);
+      res.status(201).json(newTodo);
     } catch (error) {
-      await this.DB.disconnect();
-      console.log(error);
-      return res
-        .status(500)
-        .json({ message: 'Algo salio mal, revisar consola del servidor' });
+      this.ErrorControl(res);
     }
   }
 
-  async deleteTodo(req: Request, res: Response) {
-    res.json({
-      message: 'test',
-    });
+  async deleteTodo(req: Request, res: Response): Promise<void> {
+    const { id } = req.params as { id: string };
+
+    try {
+      await this.DB.connect();
+      const deletedTodo = await TodoModel.findByIdAndDelete(id);
+      await this.DB.disconnect();
+
+      if (!deletedTodo)
+        res.status(404).json({
+          message: 'No se encontró el elemento a eliminar',
+        });
+
+      res.json({
+        message: 'OK',
+      });
+    } catch (error) {
+      this.ErrorControl(res);
+    }
   }
 
-  async updateTodo(req: Request, res: Response) {
-    res.json({
-      message: 'test',
-    });
+  async updateTodo(req: Request, res: Response): Promise<void> {
+    const { id } = req.params as { id: string };
+
+    await this.DB.connect();
+
+    const entryToUpdate = await TodoModel.findById(id);
+
+    if (!entryToUpdate) {
+      await this.DB.disconnect();
+      res.status(400).json({ message: 'No hay entrada con ese ID: ' + id });
+      return;
+    }
+
+    try {
+      entryToUpdate.set(req.body);
+
+      const updatedEntry = await entryToUpdate.save();
+
+      await this.DB.disconnect();
+      res.status(200).json(updatedEntry);
+    } catch (error: any) {
+      console.log(error);
+      this.ErrorControl(res);
+    }
   }
 }
 
