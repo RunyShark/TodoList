@@ -1,5 +1,3 @@
-'use client';
-
 import { ButtonHTMLAttributes, CSSProperties, FC, ReactElement } from 'react';
 
 export type TButton = 'primary' | 'gray';

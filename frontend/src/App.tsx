@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Header, Loading, MainLayout, TodoSection } from './components';
+import { Header, MainLayout, TodoSection } from './components';
 import { useQueryGetTodo } from './hooks/useQueryGetTodo';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import {
@@ -37,8 +37,8 @@ export const App = () => {
 
   return (
     <MainLayout>
-      {httpControlIsLoading ? (
-        <Loading />
+      {false ? (
+        <div className="loading" />
       ) : (
         <>
           <Header {...header} />

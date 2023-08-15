@@ -47,12 +47,31 @@
     width: 2rem;
     height: 2rem;
     align-self: flex-end;
+
+    &--add,
+    &--x {
+      transition: fn.transition('primary');
+      width: 2.5rem;
+      height: 2.5rem;
+      align-self: flex-end;
+      transform: rotate(45deg);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &--add {
+      transform: unset;
+    }
+
     &:hover {
       cursor: pointer;
       transform: scale(1.08);
     }
     &--edit {
       color: #026aa2;
+      width: 2.5rem;
+      height: 2.5rem;
     }
 
     &--delete {

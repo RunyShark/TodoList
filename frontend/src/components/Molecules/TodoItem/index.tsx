@@ -1,11 +1,11 @@
 import { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { Todo } from '../../../store/slices/Todo/TodoSlice';
 import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal, ViewTodo } from '../..';
 import { useModalControl, useTodo } from '../../../hooks';
 import { EditTodo } from '../../Atoms/EditTodo';
+import { Plus, Status } from '../../Atoms/Icons';
+import { Edit } from '../../Atoms/Icons/General/Edit';
 
 const initialStateAction = {
   edit: false,
@@ -45,17 +45,8 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
       onDoubleClick={viewModal}
     >
       <div className="todoSection__actions">
-        <FontAwesomeIcon
-          icon={faSquarePen}
-          className="modal__icon modal__icon--edit"
-          onClick={handelEdit}
-        />
-        <FontAwesomeIcon
-          icon={faX}
-          className="modal__icon modal__icon--delete"
-          size="2x"
-          onClick={handelDelete}
-        />
+        <Edit className="modal__icon modal__icon--edit" onClick={handelEdit} />
+        <Plus className="modal__icon--x" onClick={handelDelete} />
       </div>
 
       <h5 className="todoSection__title">{title}</h5>

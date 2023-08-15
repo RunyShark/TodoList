@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
 import {
   Col,
   Todo,
@@ -10,6 +9,7 @@ import {
 import { Button } from '../..';
 import { useAppDispatch } from '../../../store/hooks';
 import { useTodo } from '../../../hooks';
+import { Person, Status } from '../../Atoms/Icons';
 
 export type InitialFormSState = Partial<Todo>;
 
@@ -122,11 +122,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
             onChange={handleChange}
             placeholder="Titulo"
           />
-          <FontAwesomeIcon
-            icon={faArrowDown}
-            className="formTodo__icon"
-            size="lg"
-          />
+          <Person className="formTodo__icon" />
         </div>
         <div className="formTodo__container">
           <input
@@ -138,12 +134,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
             onChange={handleChange}
             placeholder="Description"
           />
-          {/* <label>description</label> */}
-          <FontAwesomeIcon
-            icon={faArrowDown}
-            className="formTodo__icon"
-            size="lg"
-          />
+          <Person className="formTodo__icon" />
         </div>
         <div className="formTodo__container formTodo__container--select">
           <label>Estado inicial de la tarea</label>
@@ -165,12 +156,10 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
               <option value="completed">Completed</option>
               <option value="inProgress">In Progress</option>
             </select>
-            <FontAwesomeIcon
-              icon={faArrowDown}
-              className={`formTodo__icon ${
+            <Status
+              className={`formTodo__icon formTodo__icon--select ${
                 isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
               }`}
-              size="lg"
             />
           </div>
         </div>
