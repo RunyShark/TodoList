@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Children } from '../../../interfaces/interfaces';
-import { Button, Footer, Navbar } from '../..';
+import { Button, Footer, Modal, Navbar } from '../..';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-duotone-svg-icons';
@@ -19,7 +19,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => (
         iconEnd={<FontAwesomeIcon icon={faPlus} size="xl" />}
       />
     </div>
-
+    <Modal />
     <Footer />
   </div>
 );

@@ -1,0 +1,47 @@
+@use '../../../global/mixins' as m;
+@use '../../../global/functions' as fn;
+@import '../../../global/baseTheme';
+
+.modal {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  transition: all 0.5s;
+  //   overflow: hidden;
+  //   overflow-y: hidden;
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__children {
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-radius: 1rem;
+    background: #fff;
+    height: 50vh;
+    width: 80vw;
+    @include m.mediaQueries(fn.breakpoint('tablet')) {
+      width: 30vw;
+    }
+  }
+
+  &__icon {
+    flex: 1;
+    transition: all 0.3s;
+  }
+
+  &__icon:hover {
+    cursor: pointer;
+    transform: scale(1.07);
+  }
+}
