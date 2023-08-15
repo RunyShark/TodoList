@@ -9,7 +9,8 @@
     "mongoose": "^7.4.3",
     "morgan": "^1.10.0",
     "uuid": "^9.0.0",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0",
+    "typescript": "^5.1.6"
   },
   "name": "backend",
   "version": "1.0.0",
