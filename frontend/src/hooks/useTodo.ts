@@ -1,4 +1,4 @@
-import { Endpoint, apiService } from '../api';
+import { Endpoint, HTTP_METHOD, apiService } from '../api';
 import { useAppDispatch } from '../store/hooks';
 import {
   Todo,
@@ -10,15 +10,22 @@ export const useTodo = () => {
   const dispatch = useAppDispatch();
 
   const getTodo = async () => {
-    const todos = await apiService.https({
+    const todo = await apiService.https({
       endpoint: Endpoint.TODO,
     });
-    dispatch(hydrateTodoList(todos?.data || []));
+    dispatch(hydrateTodoList(todo?.data || []));
     dispatch(accommodateTasks());
   };
 
-  const putTodo = async (_id: string, payload: Partial<Todo>) =>
-    console.log('putTodo', { _id, payload });
+  const putTodo = async (_id: string, payload: Partial<Todo>) => {
+    await apiService.https({
+      type: HTTP_METHOD.PUT,
+      endpoint: `${Endpoint.TODO}/${_id}`,
+      payload,
+    });
+
+    getTodo();
+  };
 
   const deleteTodo = async (_id: string) => console.log('delete todo', _id);
 

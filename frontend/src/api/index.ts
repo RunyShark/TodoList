@@ -1,9 +1,11 @@
 import Axios from 'axios';
+import { Todo } from '../store/slices/Todo/TodoSlice';
 
 export enum HTTP_METHOD {
   GET = 'get',
   POST = 'post',
   PUT = 'put',
+  DELETE = 'delete',
 }
 
 export enum Endpoint {
@@ -13,7 +15,7 @@ export enum Endpoint {
 export interface IHttps {
   type?: HTTP_METHOD;
   endpoint: string;
-  payload?: string;
+  payload?: Partial<Todo>;
   config?: string;
 }
 

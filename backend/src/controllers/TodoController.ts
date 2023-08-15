@@ -14,7 +14,7 @@ export class TodoController {
 
   private async ErrorControl(res: Response): Promise<void> {
     await this.DB.disconnect();
-    res.status(500).json({ message: 'Hubo un problema inesperado.r' });
+    res.status(500).json({ message: 'Hubo un problema inesperado error' });
   }
 
   async seedTodo(req: Request, res: Response): Promise<void> {
