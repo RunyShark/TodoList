@@ -1,0 +1,9 @@
+@use 'variables' as v;
+@use 'functions' as fn;
+
+/** Media Queries **/
+@mixin mediaQueries($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}

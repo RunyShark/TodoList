@@ -1,0 +1,17 @@
+@use 'theme' as t;
+@use 'variables' as v;
+
+//*Select color//
+@function theme($name) {
+  @return map-get(t.$theme, $name);
+}
+
+//*breakpoint
+@function breakpoint($value) {
+  @return map-get(v.$breakpoint, $value);
+}
+
+//*transition
+@function transition($value) {
+  @return map-get(v.$transition, $value);
+}

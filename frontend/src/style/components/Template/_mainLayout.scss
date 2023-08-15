@@ -1,0 +1,35 @@
+@use '../../global/functions' as fn;
+@use '../../global/mixins' as m;
+@import '../../global/baseTheme';
+
+.mainLayout {
+  min-height: calc(100vh - 5vh);
+
+  &__addTodo {
+    position: fixed;
+    bottom: 15rem;
+    right: 2rem;
+    height: 5rem;
+    width: 5rem;
+    @include m.mediaQueries(fn.breakpoint('tablet')) {
+      top: unset;
+      bottom: 30rem;
+    }
+    @include m.mediaQueries(fn.breakpoint('landscape')) {
+      right: 3rem;
+    }
+    @include m.mediaQueries(fn.breakpoint('desktop-sm')) {
+      right: 5rem;
+    }
+    @include m.mediaQueries(fn.breakpoint(' desktop-lg')) {
+      right: 5rem;
+    }
+    border-radius: 50% !important;
+    transition: fn.transition('secondary');
+    background: var(--AddButtonNormal) !important;
+    &:hover {
+      background: var(--AddHoverButton) !important;
+      transform: scale(1.05);
+    }
+  }
+}

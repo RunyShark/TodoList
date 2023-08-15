@@ -1,0 +1,62 @@
+@use './functions' as fn;
+
+:root {
+  --primary-color: #101828;
+  --background-color: rgb(249, 250, 251);
+
+  /**butt*/
+  --activeBackgroundButton: #ffffff;
+  --activeBoxShadowButton: rgba(145, 158, 171, 0.08) -24px 8px 24px -4px;
+  --AddHoverButton: #026aa2;
+  --AddButtonNormal: #4e6977;
+  //icons
+  --hoverBackgroundIcon: rgba(99, 115, 129, 0.08);
+  --primaryColorIcon: #919eab;
+  --iconPrimary: #637381;
+  --iconSecondary: #4b4d4f;
+  --iconPrimaryActive: #66c61c;
+  --iconSecondaryActive: #85e13a;
+
+  //navbar
+  --navbarBackground: #026aa2;
+
+  //footer
+  --footerBackground: #026aa2;
+
+  //col
+  --coolBackground: #f6f8fc;
+
+  //todo
+  --todoBackground: #ffffff;
+  --todoLetters: #5b5b73;
+}
+
+html.dark {
+  --primary-color: #fff;
+  --background-color: rgba(22, 28, 36, 1);
+
+  /**butt*/
+  --activeBackgroundButton: rgb(33, 43, 54);
+  --activeBoxShadowButton: rgba(0, 0, 0, 0.08) -24px 8px 24px -4px;
+
+  //icons
+  --hoverBackgroundIcon: rgba(145, 158, 171, 0.08);
+  --iconPrimary: #919eab;
+  --iconSecondary: #a4afbc;
+  --iconPrimaryActive: #66c61c;
+  --iconSecondaryActive: #85e13a;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-style: normal;
+    color: var(--primary-color);
+  }
+
+  p {
+    color: fn.theme('gray400');
+  }
+}
