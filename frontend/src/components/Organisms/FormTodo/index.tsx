@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSubtitles, faArrowDown } from '@fortawesome/pro-duotone-svg-icons';
 import {
@@ -6,13 +6,12 @@ import {
   Todo,
   accommodateTasks,
   actionModal,
-  addTodo,
 } from '../../../store/slices/Todo/TodoSlice';
 import { Button } from '../..';
 import { useAppDispatch } from '../../../store/hooks';
-import { helperService } from '../../../service';
+import { useTodo } from '../../../hooks';
 
-type InitialFormSState = Partial<Todo>;
+export type InitialFormSState = Partial<Todo>;
 
 const initialFormState: InitialFormSState = {
   col: 'pending',
@@ -20,12 +19,26 @@ const initialFormState: InitialFormSState = {
   title: '',
 };
 
-export const FormTodo = () => {
+interface IFormTodo {
+  formState: InitialFormSState;
+  formTitle: string;
+  editTodo: boolean;
+}
+
+export const FormTodo: FC<Partial<IFormTodo>> = ({
+  formState = initialFormState,
+  formTitle = 'Crea una nueva tarea',
+  editTodo = false,
+}) => {
+  const { postTodo, putTodo, getTodo } = useTodo();
   const dispatch = useAppDispatch();
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState({
+    error: false,
+    message: 'Todo los campos son necesario',
+  });
   const [isOpenSelect, setIsOpenSelect] = useState(false);
-  const [{ title, description, col }, setAddTodo] =
-    useState<InitialFormSState>(initialFormState);
+  const [{ title, description, col, _id }, setAddTodo] =
+    useState<InitialFormSState>(formState);
 
   const handleChange = ({
     target: { value, name },
@@ -35,27 +48,69 @@ export const FormTodo = () => {
       [name]: value,
     }));
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const saveTodo = async () => {
     if (!title || !description || !col) {
-      setIsError(true);
+      setIsError({
+        ...isError,
+        error: true,
+      });
       return;
     }
-    setIsError(false);
-    dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
+    try {
+      await postTodo({ title, description, col });
+      await getTodo();
+      dispatch(accommodateTasks());
+      dispatch(actionModal());
+      setAddTodo(initialFormState);
+      setIsError({
+        ...isError,
+        error: false,
+      });
+    } catch (error) {
+      console.log('Error algo salio mal');
+    }
+  };
+
+  const updateTodo = async () => {
+    if (!title || !description || !col || !_id) {
+      setIsError({
+        message: 'Para actualizar son necesarios todos los cambios',
+        error: true,
+      });
+      return;
+    }
+    await putTodo(_id, {
+      title,
+      description,
+      col,
+    });
     dispatch(accommodateTasks());
     dispatch(actionModal());
     setAddTodo(initialFormState);
+    setIsError({
+      ...isError,
+      error: false,
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!editTodo) {
+      await saveTodo();
+    } else {
+      await updateTodo();
+    }
   };
 
   return (
     <>
+      <h3>{formTitle}</h3>
       <h5
         className={`formTodo__messageError ${
-          (isError && 'formTodo__messageError--active') || ''
+          (isError.error && 'formTodo__messageError--active') || ''
         }`.trim()}
       >
-        Todo los campos son necesario
+        {isError.message}
       </h5>
       <form className="formTodo" onSubmit={handleSubmit}>
         <div className="formTodo__container">

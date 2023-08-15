@@ -1,4 +1,4 @@
-mongo/
+
 node_modules
 .env
 package-lock.json
@@ -17,7 +17,7 @@ node_modules
 dist
 dist-ssr
 *.local
-
+mongo/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
