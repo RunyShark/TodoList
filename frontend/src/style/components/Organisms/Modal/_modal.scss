@@ -51,5 +51,12 @@
       cursor: pointer;
       transform: scale(1.08);
     }
+    &--edit {
+      color: #026aa2;
+    }
+
+    &--delete {
+      color: #f04438;
+    }
   }
 }

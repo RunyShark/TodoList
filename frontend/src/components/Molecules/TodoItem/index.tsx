@@ -47,12 +47,12 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
       <div className="todoSection__actions">
         <FontAwesomeIcon
           icon={faSquarePen}
-          className="modal__icon"
+          className="modal__icon modal__icon--edit"
           onClick={handelEdit}
         />
         <FontAwesomeIcon
           icon={faX}
-          className="modal__icon"
+          className="modal__icon modal__icon--delete"
           size="2x"
           onClick={handelDelete}
         />
