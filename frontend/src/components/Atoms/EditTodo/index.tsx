@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import { FormTodo, InitialFormSState } from '../..';
 
-interface EditTodo {
-  handelCancel: () => void;
-  handelAccept: () => void;
+export interface EditTodo {
   InitialFormState: InitialFormSState;
 }
 

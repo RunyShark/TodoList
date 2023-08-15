@@ -9,13 +9,14 @@ import {
 import { DragEvent, dragAndDrop } from '../../../service';
 import { useAppDispatch } from '../../../store/hooks';
 import { useTodo } from '../../../hooks';
-interface ColTodo {
+export interface ColTodo {
   title: string;
   todo: Todo[];
   col: Col;
+  background: string;
 }
 
-export const ColTodo: FC<ColTodo> = ({ title, todo, col }) => {
+export const ColTodo: FC<ColTodo> = ({ title, todo, col, background }) => {
   const { putTodo } = useTodo();
   const dispatch = useAppDispatch();
   const onDrop = async (event: DragEvent, col: Col) => {
@@ -31,7 +32,12 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col }) => {
       onDrop={(event) => onDrop(event, col)}
     >
       <h4>{title}</h4>
-      <div className="todoSection__containerTodo">
+      <div
+        className="todoSection__containerTodo"
+        style={{
+          background,
+        }}
+      >
         {todo.map((todo) => (
           <TodoItem key={todo._id} {...todo} />
         ))}

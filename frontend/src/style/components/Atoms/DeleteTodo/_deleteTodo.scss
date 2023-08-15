@@ -1,0 +1,33 @@
+@use '../../../global/mixins' as m;
+@use '../../../global/functions' as fn;
+@import '../../../global/baseTheme';
+
+.deleteTodo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 8rem;
+  &__containerButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  &__button {
+    color: #fff;
+    transition: 0.5s;
+    &--cancel {
+      background: fn.theme('cyan700');
+      &:hover {
+        background: fn.theme('cyan900');
+      }
+    }
+    &--accept {
+      background: fn.theme('error700');
+      &:hover {
+        background: fn.theme('error900');
+      }
+    }
+  }
+}
