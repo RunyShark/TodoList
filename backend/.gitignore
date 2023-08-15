@@ -1,8 +1,8 @@
-.mongo
+./mongo
 node_modules
 .env
 package-lock.json
-.mongo
+
 # Logs
 logs
 *.log
