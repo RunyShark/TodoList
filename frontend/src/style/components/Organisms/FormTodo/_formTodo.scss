@@ -49,10 +49,18 @@
   }
 
   &__icon {
+    width: 3rem;
+    height: 3rem;
     position: absolute;
-    top: 3.6rem;
+    top: 3rem;
     right: 1.8rem;
     transition: 0.5s;
+    &--select {
+      top: 3.2rem;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
     &--open {
       transform: rotate(180deg);
     }

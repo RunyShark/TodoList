@@ -2,13 +2,15 @@
   &__container {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3rem;
   }
 
   &__helper {
     margin: 0;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     opacity: 0;
+
     transition: 0.5s;
     &--active {
       opacity: 1;
@@ -17,8 +19,8 @@
 
   &__button {
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     background: var(--AddButtonNormal);
     transition: 0.5s;
     &:hover {

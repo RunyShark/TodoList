@@ -4,6 +4,8 @@ import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal, ViewTodo } from '../..';
 import { useModalControl, useTodo } from '../../../hooks';
 import { EditTodo } from '../../Atoms/EditTodo';
+import { Plus, Status } from '../../Atoms/Icons';
+import { Edit } from '../../Atoms/Icons/General/Edit';
 
 const initialStateAction = {
   edit: false,
@@ -26,15 +28,15 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
     openModal();
   };
 
-  // const handelEdit = () => {
-  //   setAction({ ...action, edit: true });
-  //   openModal();
-  // };
+  const handelEdit = () => {
+    setAction({ ...action, edit: true });
+    openModal();
+  };
 
-  // const handelDelete = () => {
-  //   setAction({ ...action, delete: true });
-  //   openModal();
-  // };
+  const handelDelete = () => {
+    setAction({ ...action, delete: true });
+    openModal();
+  };
   return (
     <div
       className="todoSection__todo"
@@ -43,17 +45,8 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
       onDoubleClick={viewModal}
     >
       <div className="todoSection__actions">
-        {/* <FontAwesomeIcon
-          icon={faSquarePen}
-          className="modal__icon modal__icon--edit"
-          onClick={handelEdit}
-        />
-        <FontAwesomeIcon
-          icon={faX}
-          className="modal__icon modal__icon--delete"
-          size="2x"
-          onClick={handelDelete}
-        /> */}
+        <Edit className="modal__icon modal__icon--edit" onClick={handelEdit} />
+        <Plus className="modal__icon--x" onClick={handelDelete} />
       </div>
 
       <h5 className="todoSection__title">{title}</h5>
