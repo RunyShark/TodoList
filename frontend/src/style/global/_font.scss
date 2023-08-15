@@ -1,0 +1,25 @@
+$fonts: (
+  Inter-Black: '../../../public/fonts/Inter-Black.otf',
+  Inter-BlackItalic: '../../../public/fonts/Inter-BlackItalic.otf',
+  Inter-Bold: '../../../public/fonts/Inter-Bold.otf',
+  Inter-BoldItalic: '../../../public/fonts/Inter-BoldItalic.otf',
+  Inter-ExtraBold: '../../../public/fonts/Inter-ExtraBold.otf',
+  Inter-ExtraBoldItalic: '../../../public/fonts/Inter-ExtraBoldItalic.otf',
+  Inter-ExtraLight: '../../../public/fonts/Inter-ExtraLight.otf',
+  Inter-ExtraLightItalic: '../../../public/fonts/Inter-ExtraLightItalic.otf',
+  Inter-Italic: '../../../public/fonts/Inter-Italic.otf',
+  Inter-Light: '../../../public/fonts/Inter-Light.otf',
+  Inter-LightItalic: '../../../public/fonts/Inter-LightItalic.otf',
+  Inter-Medium: '../../../public/fonts/Inter-Medium.otf',
+  Inter-MediumItalic: '../../../public/fonts/Inter-MediumItalic.otf',
+  Inter-Regular: '../../../public/fonts/Inter-Regular.otf',
+  Inter-SemiBold: '../../../public/fonts/Inter-SemiBold.otf',
+  Inter-SemiBoldItalic: '../../../public/fonts/Inter-SemiBoldItalic.otf',
+);
+
+@each $name, $fontPath in $fonts {
+  @font-face {
+    font-family: $name;
+    src: url($fontPath);
+  }
+}

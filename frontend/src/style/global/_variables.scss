@@ -1,0 +1,23 @@
+// size queries
+$breakpoint: (
+  phone: 380px,
+  tablet: 768px,
+  landscape: 1024px,
+  desktop-sm: 1200px,
+  desktop-lg: 1440px,
+  desktop-xl: 1600px,
+  desktop-xxl: 2000px,
+  desktop-xxxl: 2500px,
+);
+
+$containers: (
+  sm: 64rem,
+  md: 76.8rem,
+  lg: 100.24rem,
+  xl: 128rem,
+);
+
+$transition: (
+  primary: all 0.3s,
+  secondary: all 0.5s,
+);

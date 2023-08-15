@@ -1,17 +1,26 @@
-:root {
-  --primary-color: #101828;
-  --background-color: #fff;
-}
+@use 'theme' as t;
+@use 'functions' as fn;
+@import './baseTheme';
 
-html.dark {
-  --primary-color: #fff;
-  --background-color: #1d2939;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body {
+  transition: background 0.2s ease, color 0.4s ease;
   background: var(--background-color);
   color: var(--primary-color);
+  font-family: 'Inter-Regular';
   font-size: 1.6rem;
+  min-height: 100vh;
+  text-transform: capitalize;
 }
 
 ::-webkit-scrollbar {
@@ -24,23 +33,138 @@ body {
   &:active {
     background-color: #d0d5dd;
   }
+
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
 }
-
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+ul,
+li {
+  list-style: none;
 }
 
-body {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: normal;
+  color: fn.theme('gray900');
+}
+
+h1,
+h3,
+h4,
+h6 {
+  font-weight: 600;
+  font-family: 'Inter-Medium';
+}
+
+h2,
+h5 {
+  font-weight: 500;
+  font-family: 'Inter-Medium';
+}
+
+h1 {
+  font-size: 3.6rem;
+  line-height: 4.4rem;
+  letter-spacing: -0.72px;
+  letter-spacing: -1.2px;
+
+  @media (min-width: fn.breakpoint('tablet')) {
+    font-size: 4.6rem;
+    line-height: 4.4rem;
+    letter-spacing: -0.72px;
+    letter-spacing: -1.2px;
+  }
+
+  @media (min-width: fn.breakpoint('landscape')) {
+    font-size: 6rem;
+    line-height: 7.2rem;
+  }
+}
+
+h2 {
+  font-size: 3rem;
+  line-height: 3.8rem;
+
+  @media (min-width: fn.breakpoint('tablet')) {
+    font-size: 4rem;
+    line-height: 4.4rem;
+  }
+
+  @media (min-width: fn.breakpoint('landscape')) {
+    font-size: 4.8rem;
+    line-height: 6rem;
+    letter-spacing: -0.96px;
+  }
+}
+
+h3 {
+  font-size: 3rem;
+  line-height: 3.8rem;
+
+  @media (min-width: fn.breakpoint('tablet')) {
+    font-size: 3.4rem;
+    line-height: 4.4rem;
+  }
+
+  @media (min-width: fn.breakpoint('landscape')) {
+    font-size: 3.6rem;
+    line-height: 4.4rem;
+    letter-spacing: -0.72px;
+  }
+}
+
+h4 {
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+
+  @media (min-width: fn.breakpoint('tablet')) {
+    font-size: 1.9rem;
+    line-height: 2.9rem;
+  }
+
+  @media (min-width: fn.breakpoint('landscape')) {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}
+
+h5 {
+  font-size: 1.8rem;
+  line-height: 2.8rem;
+}
+
+h6 {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+p {
+  font-family: 'Inter-Regular';
   font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.4rem;
+  color: fn.theme('gray600');
+  @media (min-width: fn.breakpoint('landscape')) {
+    font-size: 1.8rem;
+    line-height: 3rem;
+  }
+}
+
+input {
+  all: unset;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 0.8rem;
+  color: fn.theme('gray700');
 }
