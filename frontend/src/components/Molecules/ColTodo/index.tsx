@@ -22,13 +22,13 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col }) => {
     dispatch(accommodateTasks());
   };
   return (
-    <div className="todoSection__col">
+    <div
+      className="todoSection__col"
+      onDragOver={(evt) => evt.preventDefault()}
+      onDrop={(event) => onDrop(event, col)}
+    >
       <h4>{title}</h4>
-      <div
-        className="todoSection__containerTodo"
-        onDragOver={(evt) => evt.preventDefault()}
-        onDrop={(event) => onDrop(event, col)}
-      >
+      <div className="todoSection__containerTodo">
         {todo.map((todo) => (
           <TodoItem key={todo.id} {...todo} />
         ))}

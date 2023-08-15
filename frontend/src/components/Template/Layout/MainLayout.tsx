@@ -10,7 +10,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => (
   <div style={{ position: 'relative' }}>
     <Navbar />
     <div className="spacing mainLayout">{children}</div>
-    <Button>AdTodo btn</Button>
+    <Button className="mainLayout__addTodo">AdTodo btn</Button>
     <Footer />
   </div>
 );
