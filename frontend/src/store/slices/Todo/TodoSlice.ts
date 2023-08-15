@@ -86,11 +86,20 @@ export const TodoSlice = createSlice({
     actionModal(state) {
       state.controlClient.isOpenModal = !state.controlClient.isOpenModal;
     },
+
+    addTodo(state, { payload }: PayloadAction<Todo>) {
+      state.todoList = [...state.todoList, payload];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getTodoList, statusChangeTodo, accommodateTasks, actionModal } =
-  TodoSlice.actions;
+export const {
+  getTodoList,
+  statusChangeTodo,
+  accommodateTasks,
+  actionModal,
+  addTodo,
+} = TodoSlice.actions;
 
 export default TodoSlice.reducer;
