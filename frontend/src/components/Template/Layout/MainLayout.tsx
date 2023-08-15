@@ -1,30 +1,37 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Children } from '../../../interfaces/interfaces';
 import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-duotone-svg-icons';
-import { useAppDispatch } from '../../../store/hooks';
-import { actionModal } from '../../../store/slices/Todo/TodoSlice';
+import { useModalControl } from '../../../hooks';
+import { useAppSelector } from '../../../store/hooks';
 
 interface MainLayout {
   children: Children;
 }
 
 export const MainLayout: FC<MainLayout> = ({ children }) => {
-  const dispatch = useAppDispatch();
+  const {
+    controlClient: { isOpenModal },
+  } = useAppSelector(({ todo }) => todo);
+  const { closeModal, isModalOpen, openModal } = useModalControl();
+
+  useEffect(() => {
+    closeModal();
+  }, [isOpenModal]);
+
   return (
     <div style={{ position: 'relative' }}>
       <Navbar />
       <div className="spacing mainLayout">
-        {children}{' '}
+        {children}
         <Button
           className="mainLayout__addTodo "
           iconEnd={<FontAwesomeIcon icon={faPlus} size="xl" />}
-          onClick={() => dispatch(actionModal())}
+          onClick={openModal}
         />
       </div>
-      <Modal>
+      <Modal open={isModalOpen} closeModal={closeModal}>
         <FormTodo />
       </Modal>
       <Footer />
