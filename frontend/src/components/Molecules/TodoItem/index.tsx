@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faSquarePen } from '@fortawesome/free-solid-svg-icons';
 import { Todo } from '../../../store/slices/Todo/TodoSlice';
 import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal, ViewTodo } from '../..';
@@ -28,15 +26,15 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
     openModal();
   };
 
-  const handelEdit = () => {
-    setAction({ ...action, edit: true });
-    openModal();
-  };
+  // const handelEdit = () => {
+  //   setAction({ ...action, edit: true });
+  //   openModal();
+  // };
 
-  const handelDelete = () => {
-    setAction({ ...action, delete: true });
-    openModal();
-  };
+  // const handelDelete = () => {
+  //   setAction({ ...action, delete: true });
+  //   openModal();
+  // };
   return (
     <div
       className="todoSection__todo"
@@ -45,7 +43,7 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
       onDoubleClick={viewModal}
     >
       <div className="todoSection__actions">
-        <FontAwesomeIcon
+        {/* <FontAwesomeIcon
           icon={faSquarePen}
           className="modal__icon modal__icon--edit"
           onClick={handelEdit}
@@ -55,7 +53,7 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
           className="modal__icon modal__icon--delete"
           size="2x"
           onClick={handelDelete}
-        />
+        /> */}
       </div>
 
       <h5 className="todoSection__title">{title}</h5>
