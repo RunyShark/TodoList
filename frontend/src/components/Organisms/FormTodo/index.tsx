@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
 import {
   Col,
   Todo,
@@ -122,11 +121,12 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
             onChange={handleChange}
             placeholder="Titulo"
           />
-          <FontAwesomeIcon
+          <p>icon</p>
+          {/* <FontAwesomeIcon
             icon={faArrowDown}
             className="formTodo__icon"
-            size="lg"
-          />
+            size="lg" */}
+          {/* /> */}
         </div>
         <div className="formTodo__container">
           <input
@@ -139,11 +139,12 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
             placeholder="Description"
           />
           {/* <label>description</label> */}
-          <FontAwesomeIcon
+          <p>icon</p>
+          {/* <FontAwesomeIcon
             icon={faArrowDown}
             className="formTodo__icon"
             size="lg"
-          />
+          /> */}
         </div>
         <div className="formTodo__container formTodo__container--select">
           <label>Estado inicial de la tarea</label>
@@ -165,13 +166,14 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
               <option value="completed">Completed</option>
               <option value="inProgress">In Progress</option>
             </select>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faArrowDown}
               className={`formTodo__icon ${
                 isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
               }`}
               size="lg"
-            />
+            /> */}
+            <p>icon</p>
           </div>
         </div>
 

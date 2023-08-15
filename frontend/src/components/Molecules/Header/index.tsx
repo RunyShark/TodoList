@@ -1,7 +1,5 @@
 import { FC, useState } from 'react';
 import { Button } from '..';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 export interface Header {
   title: string;
@@ -20,7 +18,8 @@ export const Header: FC<Header> = ({ title, subtitle }) => {
           <Button
             className="header__button"
             iconEnd={
-              <FontAwesomeIcon icon={faQuestion} className="header__icon" />
+              <p>icon</p>
+              // <FontAwesomeIcon icon={faQuestion} className="header__icon" />
             }
             onClick={() => setIsOpen(!isOpen)}
           />
