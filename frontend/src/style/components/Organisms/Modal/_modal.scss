@@ -28,7 +28,7 @@
     align-items: flex-end;
     border-radius: 1rem;
     background: #fff;
-    height: 50vh;
+    height: auto;
     width: 80vw;
     @include m.mediaQueries(fn.breakpoint('tablet')) {
       width: 80rem;
@@ -50,6 +50,13 @@
     &:hover {
       cursor: pointer;
       transform: scale(1.08);
+    }
+    &--edit {
+      color: #026aa2;
+    }
+
+    &--delete {
+      color: #f04438;
     }
   }
 }

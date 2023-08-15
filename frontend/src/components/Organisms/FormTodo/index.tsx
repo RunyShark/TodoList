@@ -30,7 +30,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
   formTitle = 'Crea una nueva tarea',
   editTodo = false,
 }) => {
-  const { postTodo, putTodo, getTodo } = useTodo();
+  const { postTodo, putTodo } = useTodo();
   const dispatch = useAppDispatch();
   const [isError, setIsError] = useState({
     error: false,
@@ -58,7 +58,6 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
     }
     try {
       await postTodo({ title, description, col });
-      await getTodo();
       dispatch(accommodateTasks());
       dispatch(actionModal());
       setAddTodo(initialFormState);
@@ -148,30 +147,32 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
         </div>
         <div className="formTodo__container formTodo__container--select">
           <label>Estado inicial de la tarea</label>
-          <select
-            name="col"
-            value={col}
-            id="status"
-            className="formTodo__select"
-            onClick={() => setIsOpenSelect(!isOpenSelect)}
-            onChange={(e) =>
-              setAddTodo((state) => ({
-                ...state,
-                col: e.target.value as Col,
-              }))
-            }
-          >
-            <option value="pending">Pending</option>
-            <option value="completed">Completed</option>
-            <option value="inProgress">In Progress</option>
-          </select>
-          <FontAwesomeIcon
-            icon={faArrowDown}
-            className={`formTodo__icon ${
-              isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
-            }`}
-            size="lg"
-          />
+          <div className="formTodo__container ">
+            <select
+              name="col"
+              value={col}
+              id="status"
+              className="formTodo__select"
+              onClick={() => setIsOpenSelect(!isOpenSelect)}
+              onChange={(e) =>
+                setAddTodo((state) => ({
+                  ...state,
+                  col: e.target.value as Col,
+                }))
+              }
+            >
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+              <option value="inProgress">In Progress</option>
+            </select>
+            <FontAwesomeIcon
+              icon={faArrowDown}
+              className={`formTodo__icon ${
+                isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
+              }`}
+              size="lg"
+            />
+          </div>
         </div>
 
         <Button

@@ -14,8 +14,8 @@ interface DataApp {
 
 const { header }: DataApp = {
   header: {
-    title: 'Todo',
-    subtitle: 'Test',
+    title: 'Todo list',
+    subtitle: 'Como funciona',
   },
 };
 
@@ -41,7 +41,6 @@ export const App = () => {
         <Loading />
       ) : (
         <>
-          {' '}
           <Header {...header} />
           <TodoSection />
         </>
