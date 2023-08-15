@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Children } from '../../../interfaces/interfaces';
-import { Button, Footer, Modal, Navbar } from '../..';
+import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/pro-duotone-svg-icons';
@@ -24,7 +24,9 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
           onClick={() => dispatch(actionModal())}
         />
       </div>
-      <Modal />
+      <Modal>
+        <FormTodo />
+      </Modal>
       <Footer />
     </div>
   );

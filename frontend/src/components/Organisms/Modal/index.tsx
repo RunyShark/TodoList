@@ -1,9 +1,14 @@
+import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/pro-duotone-svg-icons';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { actionModal } from '../../../store/slices/Todo/TodoSlice';
+import { Children } from '../../../interfaces/interfaces';
+interface IModal {
+  children: Children;
+}
 
-export const Modal = () => {
+export const Modal: FC<IModal> = ({ children }) => {
   const {
     controlClient: { isOpenModal },
   } = useAppSelector(({ todo }) => todo);
@@ -22,9 +27,7 @@ export const Modal = () => {
                   size="2x"
                   onClick={() => dispatch(actionModal())}
                 />
-                <div>
-                  <p>Test</p>
-                </div>
+                {children}
               </div>
             </div>
           </div>
