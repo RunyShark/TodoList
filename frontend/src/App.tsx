@@ -37,7 +37,7 @@ export const App = () => {
 
   return (
     <MainLayout>
-      {false ? (
+      {httpControlIsLoading ? (
         <div className="loading" />
       ) : (
         <>
