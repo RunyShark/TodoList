@@ -1,22 +1,17 @@
 import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/pro-duotone-svg-icons';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { actionModal } from '../../../store/slices/Todo/TodoSlice';
 import { Children } from '../../../interfaces/interfaces';
 interface IModal {
   children: Children;
+  open: boolean;
+  closeModal: () => void;
 }
 
-export const Modal: FC<IModal> = ({ children }) => {
-  const {
-    controlClient: { isOpenModal },
-  } = useAppSelector(({ todo }) => todo);
-  const dispatch = useAppDispatch();
-
+export const Modal: FC<IModal> = ({ children, open, closeModal }) => {
   return (
     <>
-      {isOpenModal && (
+      {open && (
         <div className="modal">
           <div className="modal__container">
             <div className="modal__children">
@@ -25,7 +20,7 @@ export const Modal: FC<IModal> = ({ children }) => {
                   icon={faX}
                   className="modal__icon"
                   size="2x"
-                  onClick={() => dispatch(actionModal())}
+                  onClick={closeModal}
                 />
                 {children}
               </div>

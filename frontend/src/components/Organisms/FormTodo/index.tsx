@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSubtitles, faArrowDown } from '@fortawesome/pro-duotone-svg-icons';
 import {
@@ -11,8 +11,9 @@ import {
 import { Button } from '../..';
 import { useAppDispatch } from '../../../store/hooks';
 import { helperService } from '../../../service';
+import { useTodo } from '../../../hooks';
 
-type InitialFormSState = Partial<Todo>;
+export type InitialFormSState = Partial<Todo>;
 
 const initialFormState: InitialFormSState = {
   col: 'pending',
@@ -20,12 +21,27 @@ const initialFormState: InitialFormSState = {
   title: '',
 };
 
-export const FormTodo = () => {
+interface IFormTodo {
+  formState: InitialFormSState;
+  formTitle: string;
+  editTodo: boolean;
+}
+
+export const FormTodo: FC<Partial<IFormTodo>> = ({
+  formState = initialFormState,
+  formTitle = 'Crea una nueva tarea',
+  editTodo = false,
+}) => {
+  const { postTodo, putTodo } = useTodo();
   const dispatch = useAppDispatch();
   const [isError, setIsError] = useState(false);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [{ title, description, col }, setAddTodo] =
-    useState<InitialFormSState>(initialFormState);
+    useState<InitialFormSState>(formState);
+
+  useEffect(() => {
+    setAddTodo(formState);
+  }, [formState]);
 
   const handleChange = ({
     target: { value, name },
@@ -35,21 +51,38 @@ export const FormTodo = () => {
       [name]: value,
     }));
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!title || !description || !col) {
       setIsError(true);
       return;
     }
     setIsError(false);
-    dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
-    dispatch(accommodateTasks());
-    dispatch(actionModal());
-    setAddTodo(initialFormState);
+
+    if (!editTodo) {
+      dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
+      await postTodo({ title, description, col, id: helperService.uuid() });
+      dispatch(accommodateTasks());
+      dispatch(actionModal()); //fix
+      setAddTodo(initialFormState);
+    } else {
+      //edit
+      dispatch(addTodo({ title, description, col, id: helperService.uuid() }));
+      await putTodo(helperService.uuid(), {
+        title,
+        description,
+        col,
+        id: helperService.uuid(),
+      });
+      dispatch(accommodateTasks());
+      dispatch(actionModal());
+      setAddTodo(initialFormState);
+    }
   };
 
   return (
     <>
+      <h3>{formTitle}</h3>
       <h5
         className={`formTodo__messageError ${
           (isError && 'formTodo__messageError--active') || ''
