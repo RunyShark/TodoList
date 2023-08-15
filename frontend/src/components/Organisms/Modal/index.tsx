@@ -5,8 +5,8 @@ interface IModal {
   open: boolean;
   closeModal: () => void;
 }
-
-export const Modal: FC<IModal> = ({ children, open, closeModal }) => {
+//closeModal
+export const Modal: FC<IModal> = ({ children, open }) => {
   return (
     <>
       {open && (
