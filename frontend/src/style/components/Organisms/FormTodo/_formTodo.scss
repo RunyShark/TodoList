@@ -1,3 +1,7 @@
+@use '../../../global/mixins' as m;
+@use '../../../global/functions' as fn;
+@import '../../../global/baseTheme';
+
 .formTodo {
   width: 100%;
   height: 100%;
@@ -7,24 +11,49 @@
   justify-content: space-around;
 
   &__container {
+    display: flex;
     position: relative;
     padding: 2rem 0;
+    width: 100%;
   }
 
+  &__select,
   &__input {
+    font-family: 'Inter-Regular';
     border-radius: 8px;
-    border: 1px solid var(--gray-300, #d0d5dd);
-    background: var(--base-white, #fff);
+    border: 1px solid fn.theme('gray300');
+    background: #fff;
     box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
     display: flex;
     justify-content: center;
-    padding: 1rem 1.2rem;
+    padding: 1rem 7rem 1rem 1rem;
+    height: 3rem;
     align-items: center;
+    width: 100%;
+    transition: fn.transition('secondary');
+
+    &:focus,
+    &:active {
+      border: 1px solid fn.theme('blueLight800');
+      box-shadow: -3px 0px 9px 8px rgba(6, 89, 134, 0.05);
+    }
+  }
+
+  &__select {
+    height: 5rem;
+    appearance: none;
   }
 
   &__icon {
     position: absolute;
-    top: 32px;
-    right: 18px;
+    top: 3.6rem;
+    right: 1.8rem;
+    transition: 0.5s;
+    &--open {
+      transform: rotate(180deg);
+    }
+    &--close {
+      transform: rotate(0deg);
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSubtitles } from '@fortawesome/pro-duotone-svg-icons';
+import { faSubtitles, faArrowDown } from '@fortawesome/pro-duotone-svg-icons';
 import { Todo } from '../../../store/slices/Todo/TodoSlice';
 import { Button } from '../..';
 
@@ -13,6 +13,7 @@ const initialFormState: InitialFormSState = {
 };
 
 export const FormTodo = () => {
+  const [isOpenSelect, setIsOpenSelect] = useState(false);
   const [{ title, description }, setAddTodo] =
     useState<InitialFormSState>(initialFormState);
 
@@ -58,14 +59,33 @@ export const FormTodo = () => {
           size="lg"
         />
       </div>
+      <div className="formTodo__container">
+        <select
+          name="status"
+          id="status"
+          className="formTodo__select"
+          onClick={() => setIsOpenSelect(!isOpenSelect)}
+        >
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="inProgress">In Progress</option>
+        </select>
+        <FontAwesomeIcon
+          icon={faArrowDown}
+          className={`formTodo__icon ${
+            isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
+          }`}
+          size="lg"
+        />
+      </div>
 
-      <select name="status" id="status" className="formTodo__container">
-        <option value="pending">Pending</option>
-        <option value="completed">Completed</option>
-        <option value="inProgress">In Progress</option>
-      </select>
-
-      <Button className="formTodo__container">Agregar</Button>
+      <Button
+        className="formTodo__container"
+        style={{ background: 'var(--AddButtonNormal)' }}
+        color="#fff"
+      >
+        Agregar
+      </Button>
     </form>
   );
 };
