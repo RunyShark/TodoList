@@ -42,7 +42,9 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
 
   const handleChange = ({
     target: { value, name },
-  }: React.ChangeEvent<HTMLInputElement>) =>
+  }:
+    | React.ChangeEvent<HTMLInputElement>
+    | React.ChangeEvent<HTMLTextAreaElement>) =>
     setAddTodo((state) => ({
       ...state,
       [name]: value,
@@ -113,6 +115,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
       </h5>
       <form className="formTodo" onSubmit={handleSubmit}>
         <div className="formTodo__container">
+          <label>Titulo</label>
           <input
             type="text"
             name="title"
@@ -125,12 +128,12 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
           <Person className="formTodo__icon" />
         </div>
         <div className="formTodo__container">
-          <input
-            type="text"
+          <label>Descripcion</label>
+          <textarea
             name="description"
             value={description}
             id="description"
-            className="formTodo__input"
+            className="formTodo__input formTodo__textarea"
             onChange={handleChange}
             placeholder="Description"
           />
@@ -138,30 +141,29 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
         </div>
         <div className="formTodo__container formTodo__container--select">
           <label>Estado inicial de la tarea</label>
-          <div className="formTodo__container ">
-            <select
-              name="col"
-              value={col}
-              id="status"
-              className="formTodo__select"
-              onClick={() => setIsOpenSelect(!isOpenSelect)}
-              onChange={(e) =>
-                setAddTodo((state) => ({
-                  ...state,
-                  col: e.target.value as Col,
-                }))
-              }
-            >
-              <option value="pending">Pending</option>
-              <option value="completed">Completed</option>
-              <option value="inProgress">In Progress</option>
-            </select>
-            <Status
-              className={`formTodo__icon formTodo__icon--select ${
-                isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
-              }`}
-            />
-          </div>
+
+          <select
+            name="col"
+            value={col}
+            id="status"
+            className="formTodo__select"
+            onClick={() => setIsOpenSelect(!isOpenSelect)}
+            onChange={(e) =>
+              setAddTodo((state) => ({
+                ...state,
+                col: e.target.value as Col,
+              }))
+            }
+          >
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="inProgress">In Progress</option>
+          </select>
+          <Status
+            className={`formTodo__icon formTodo__icon--select ${
+              isOpenSelect ? 'formTodo__icon--open' : 'formTodo__icon--close'
+            }`}
+          />
         </div>
 
         <Button
