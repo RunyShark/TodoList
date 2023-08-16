@@ -72,6 +72,9 @@ export const ThemeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
+    isOpenSettingTheme(state) {
+      state.controlUser.isOpenSettings = !state.controlUser.isOpenSettings;
+    },
     seTheme(state, { payload }: PayloadAction<Theme>) {
       state = payload;
     },
@@ -97,6 +100,7 @@ export const ThemeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { seTheme, darkTheme, lightTheme, setColors } = ThemeSlice.actions;
+export const { seTheme, darkTheme, lightTheme, setColors, isOpenSettingTheme } =
+  ThemeSlice.actions;
 
 export default ThemeSlice.reducer;

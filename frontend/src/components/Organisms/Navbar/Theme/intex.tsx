@@ -3,6 +3,7 @@ import { themeService } from '../../../../service';
 import { useAppDispatch, useAppSelector } from '../../../../store';
 import {
   darkTheme,
+  isOpenSettingTheme,
   lightTheme,
 } from '../../../../store/slices/Theme/ThemeSlice';
 import { Color } from '../Color';
@@ -32,7 +33,10 @@ export const Theme = () => {
           <h5>Setting</h5>
           <div className="theme__configHeader--icon">
             <Reset className="theme__icon" />
-            <Xmark className="theme__icon" />
+            <Xmark
+              className="theme__icon"
+              onClick={() => dispatch(isOpenSettingTheme())}
+            />
           </div>
         </div>
         <div className="theme__containerButtons">
