@@ -5,7 +5,7 @@
   --backgroundSettings: rgba(255, 255, 255, 0.9);
 
   --primary-color: #101828;
-  --background-color: rgb(249, 250, 251);
+  --background-color: rgb(249, 250, 251, 0.1);
 
   /**butt*/
   --activeBackgroundButton: #ffffff;
@@ -17,9 +17,7 @@
   --primaryColorIcon: #919eab;
   --iconPrimary: #637381;
   --iconSecondary: #4b4d4f;
-
-  --iconPrimaryActive: #66c61c;
-  --iconSecondaryActive: #85e13a;
+  --iconPlus: #4b4d4f;
 
   //navbar
   --navbarBackground: #a6f4c5;
@@ -53,8 +51,7 @@ html.dark {
   --hoverBackgroundIcon: rgba(145, 158, 171, 0.08);
   --iconPrimary: #919eab;
   --iconSecondary: #a4afbc;
-  --iconPrimaryActive: #66c61c;
-  --iconSecondaryActive: #85e13a;
+  --iconPlus: #fff;
 
   //col
   --coolBackground: rgb(33, 43, 54);

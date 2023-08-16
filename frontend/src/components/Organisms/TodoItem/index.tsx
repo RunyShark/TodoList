@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Todo } from '../../../store';
+import { Todo, useAppSelector } from '../../../store';
 import { useModalControl, useTodo } from '../../../hooks';
 import { dragAndDrop } from '../../../service';
 import { DeleteTodo, Modal, ViewTodo, EditTodo, Edit, Plus } from '../..';
@@ -10,7 +10,13 @@ const initialStateAction = {
   view: false,
 };
 
+// color: rgb(97, 243, 243);
+// background-color: rgba(0, 184, 217, 0.16);
+
 export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
+  const {
+    primaryColor: { primary, secondary, tertiary },
+  } = useAppSelector(({ theme }) => theme);
   const { closeModal, isModalOpen, openModal } = useModalControl();
   const [action, setAction] = useState(initialStateAction);
   const { deleteTodo } = useTodo();
@@ -41,19 +47,35 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
   };
 
   return (
-    <div
-      className="todoSection__todo"
-      draggable
-      onDragStart={(event) => dragAndDrop.onDragStart(event, _id)}
-      onDoubleClick={viewModal}
-    >
-      <div className="todoSection__actions">
-        <Edit className="modal__icon modal__icon--edit" onClick={handelEdit} />
-        <Plus className="modal__icon--x" onClick={handelDelete} />
-      </div>
+    <>
+      <div
+        className="todoSection__todo"
+        draggable
+        onDragStart={(event) => dragAndDrop.onDragStart(event, _id)}
+        onDoubleClick={viewModal}
+      >
+        <div className="todoSection__actions">
+          <span
+            className="todoSection__label"
+            style={{
+              color: col == 'completed' ? primary : tertiary,
+              backgroundColor: secondary,
+            }}
+          >
+            {col}
+          </span>
+          <div className="todoSection__actionsContainer">
+            <Edit
+              className="modal__icon modal__icon--edit"
+              onClick={handelEdit}
+            />
+            <Plus className="modal__icon--x" onClick={handelDelete} />
+          </div>
+        </div>
 
-      <h4 className="todoSection__title">{title}</h4>
-      <p className="todoSection__text">{description}</p>
+        <h4 className="todoSection__title">{title}</h4>
+        <p className="todoSection__text">{description}</p>
+      </div>
       <Modal
         open={isModalOpen}
         closeModal={() => (closeModal(), setAction(initialStateAction))}
@@ -69,6 +91,6 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
           <EditTodo InitialFormState={{ title, description, _id, col }} />
         )}
       </Modal>
-    </div>
+    </>
   );
 };

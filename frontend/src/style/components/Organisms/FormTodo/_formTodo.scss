@@ -35,7 +35,7 @@
     align-items: center;
     width: 100%;
     transition: fn.transition('secondary');
-
+    color: fn.theme('gray800');
     &:focus,
     &:active {
       border: 1px solid fn.theme('blueLight800');

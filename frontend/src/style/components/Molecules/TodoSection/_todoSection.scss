@@ -21,15 +21,32 @@
     width: 100%;
     min-height: 30rem;
     padding: 2.4rem 1.2rem;
-    border-radius: 0.8rem;
+    border-radius: 0.2rem;
     box-shadow: 0 8px 16px rgba(#101010, 0.1);
   }
 
   &__actions {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    height: 2.4rem;
+    min-width: 2.4rem;
+    border-radius: 2px;
+    align-items: center;
+    display: inline-flex;
+    padding: 0rem 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  &__actionsContainer {
+    display: flex;
+    gap: 1.5rem;
   }
 
   &__title {

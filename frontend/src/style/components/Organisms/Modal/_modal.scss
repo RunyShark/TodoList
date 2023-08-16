@@ -27,7 +27,7 @@
     flex-direction: column;
     align-items: flex-end;
     border-radius: 1rem;
-    background: #fff;
+    background: var(--coolBackground);
     height: auto;
     width: 80vw;
     @include m.mediaQueries(fn.breakpoint('tablet')) {

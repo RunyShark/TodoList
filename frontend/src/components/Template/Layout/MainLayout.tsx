@@ -11,8 +11,13 @@ interface MainLayout {
 
 export const MainLayout: FC<MainLayout> = ({ children }) => {
   const {
-    controlClient: { isOpenModal },
-  } = useAppSelector(({ todo }) => todo);
+    todo: {
+      controlClient: { isOpenModal },
+    },
+    theme: {
+      primaryColor: { secondary },
+    },
+  } = useAppSelector((state) => state);
 
   const { closeModal, isModalOpen, openModal } = useModalControl();
 
@@ -29,6 +34,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
           className="mainLayout__addTodo"
           iconEnd={<Plus onClick={closeModal} className="mainLayout__icon" />}
           onClick={openModal}
+          backgroundColor={secondary}
         />
       </div>
       <Modal open={isModalOpen} closeModal={closeModal}>

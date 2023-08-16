@@ -29,6 +29,21 @@
     }
   }
 
+  &__title {
+    margin: 0;
+  }
+
+  &__tooltip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    width: 21rem;
+    height: 21rem;
+  }
+
   &__icon {
     color: #fff;
   }
