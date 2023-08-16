@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 
 class HelperService {
-  uuid() {
+  uuid(): string {
     return v4();
   }
 }

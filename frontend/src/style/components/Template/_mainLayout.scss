@@ -26,9 +26,8 @@
     }
     border-radius: 50% !important;
     transition: fn.transition('secondary');
-    background: var(--AddButtonNormal) !important;
+
     &:hover {
-      background: var(--AddHoverButton) !important;
       transform: scale(1.05);
     }
   }

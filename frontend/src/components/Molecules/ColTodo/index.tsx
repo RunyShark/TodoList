@@ -33,7 +33,7 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col, background }) => {
       onDragOver={(evt) => evt.preventDefault()}
       onDrop={(event) => onDrop(event, col)}
     >
-      <h4>{title}</h4>
+      <h4 style={{ textAlign: 'center' }}>{title}</h4>
       <div
         className="todoSection__containerTodo"
         style={{

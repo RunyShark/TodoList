@@ -60,6 +60,7 @@ export const TodoSlice = createSlice({
       state.todoList = payload;
       state.httpControl.isLoading = false;
     },
+
     accommodateTasks(state) {
       state.cols = {
         completed: state.todoList.filter((todo) => todo.col === 'completed'),
@@ -67,6 +68,7 @@ export const TodoSlice = createSlice({
         inProgress: state.todoList.filter((todo) => todo.col === 'inProgress'),
       };
     },
+
     statusChangeTodo(state, { payload: { item, col } }: PayloadAction<Drop>) {
       state.todoList = state.todoList.map((todo) => {
         if (todo._id === item) {
@@ -78,6 +80,7 @@ export const TodoSlice = createSlice({
         return todo;
       });
     },
+
     actionModal(state) {
       state.controlClient.isOpenModal = !state.controlClient.isOpenModal;
     },

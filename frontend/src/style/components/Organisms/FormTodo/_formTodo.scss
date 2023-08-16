@@ -35,12 +35,17 @@
     align-items: center;
     width: 100%;
     transition: fn.transition('secondary');
-
+    color: fn.theme('gray800');
     &:focus,
     &:active {
       border: 1px solid fn.theme('blueLight800');
       box-shadow: -3px 0px 9px 8px rgba(6, 89, 134, 0.05);
     }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 2rem 0;
   }
 
   &__select {
@@ -71,7 +76,7 @@
 
   &__messageError {
     margin: 0;
-    color: fn.theme('error500');
+    color: fn.theme('error500') !important;
     opacity: 0;
     transition: fn.transition('primary');
     &--active {

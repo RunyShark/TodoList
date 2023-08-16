@@ -7,6 +7,8 @@ import {
   hydrateTodoList,
   isLoading,
 } from './store/slices/Todo/TodoSlice';
+import { themeService } from './service';
+import { seTheme } from './store/slices/Theme/ThemeSlice';
 
 interface DataApp {
   header: Header;
@@ -26,6 +28,8 @@ export const App = () => {
 
   const dispatch = useAppDispatch();
   const { query } = useQueryGetTodo();
+
+  //Cada responsabilidad debe ser manejada por un useEffect individual, tal como es recomendado por el equipo de React.
   useEffect(() => {
     if (query.data) {
       dispatch(hydrateTodoList(query?.data || []));
@@ -34,6 +38,15 @@ export const App = () => {
       dispatch(isLoading(true));
     }
   }, [query.data]);
+
+  //set theme
+  useEffect(() => {
+    themeService.init();
+  }, []);
+
+  useEffect(() => {
+    dispatch(seTheme(themeService.getTheme));
+  }, []);
 
   return (
     <MainLayout>

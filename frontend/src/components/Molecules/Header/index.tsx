@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
 import { Button } from '..';
+import { useAppSelector } from '../../../store';
+import { Ask } from '../..';
 
 export interface Header {
   title: string;
@@ -7,16 +9,22 @@ export interface Header {
 }
 
 export const Header: FC<Header> = ({ title }) => {
+  const {
+    isDark,
+    colorActive,
+    primaryColor: { secondary },
+  } = useAppSelector(({ theme }) => theme);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="header">
       <div className="header__container">
-        <h1>{title}</h1>
+        <h1 className="header__title">{title}</h1>
         <Button
           className="header__button"
-          iconEnd={<h3>?</h3>}
+          iconEnd={<Ask colorActive={(!isDark && colorActive) || null} />}
           onClick={() => setIsOpen(!isOpen)}
+          backgroundColor={secondary}
         />
       </div>
 
