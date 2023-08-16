@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.route = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+exports.route = (0, express_1.Router)();
+exports.route.get('/seed', controllers_1.todoController.seedTodo.bind(controllers_1.todoController));
+exports.route.get('/', controllers_1.todoController.getTodo.bind(controllers_1.todoController));
+exports.route.post('/', controllers_1.todoController.postTodo.bind(controllers_1.todoController));
+exports.route.delete(`/:id`, controllers_1.todoController.deleteTodo.bind(controllers_1.todoController));
+exports.route.put(`/:id`, controllers_1.todoController.updateTodo.bind(controllers_1.todoController));
+exports.default = exports.route;
