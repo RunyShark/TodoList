@@ -89,14 +89,11 @@ export const ThemeSlice = createSlice({
         },
       }: PayloadAction<TThemeService>
     ) {
-      state = {
-        ...state,
-        colorActive,
-        isDark,
-        paletsColor,
-        primaryColor,
-        secondaryColor,
-      };
+      state.colorActive = colorActive;
+      state.isDark = isDark;
+      state.primaryColor = primaryColor;
+      state.secondaryColor = secondaryColor;
+      state.paletsColor = paletsColor;
     },
 
     darkTheme(state) {
