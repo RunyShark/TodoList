@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Children } from '../../../interfaces/interfaces';
+import { Children } from '../../../interfaces';
 import { Plus } from '../../Atoms/Icons';
 interface IModal {
   children: Children;

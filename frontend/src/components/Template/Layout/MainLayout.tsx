@@ -1,9 +1,9 @@
 import { FC, useEffect } from 'react';
-import { Children } from '../../../interfaces/interfaces';
+import { Children } from '../../../interfaces';
 import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
 import { useModalControl } from '../../../hooks';
-import { useAppSelector } from '../../../store/hooks';
-import { Plus } from '../../Atoms/Icons';
+import { useAppSelector } from '../../../store';
+import { Plus } from '../..';
 
 interface MainLayout {
   children: Children;
@@ -13,6 +13,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
   const {
     controlClient: { isOpenModal },
   } = useAppSelector(({ todo }) => todo);
+
   const { closeModal, isModalOpen, openModal } = useModalControl();
 
   useEffect(() => {

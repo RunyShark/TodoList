@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Endpoint, HTTP_METHOD, apiService } from '../api';
-import { Todo, isLoading } from '../store/slices/Todo/TodoSlice';
+import { Todo, isLoading } from '../store';
 import { CACHE_KEY } from '.';
 import { useAppDispatch } from '../store/hooks';
 
