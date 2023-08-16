@@ -103,7 +103,7 @@ export const FormTodo: FC<Partial<IFormTodo>> = ({
 
   return (
     <>
-      <h3>{formTitle}</h3>
+      <h3 className="formTodo__title">{formTitle}</h3>
       <h5
         className={`formTodo__messageError ${
           (isError.error && 'formTodo__messageError--active') || ''
