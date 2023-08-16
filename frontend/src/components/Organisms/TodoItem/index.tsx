@@ -52,7 +52,7 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
         <Plus className="modal__icon--x" onClick={handelDelete} />
       </div>
 
-      <h5 className="todoSection__title">{title}</h5>
+      <h4 className="todoSection__title">{title}</h4>
       <p className="todoSection__text">{description}</p>
       <Modal
         open={isModalOpen}
