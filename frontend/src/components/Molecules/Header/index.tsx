@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Button } from '..';
 import { useAppSelector } from '../../../store';
-import { Ask } from '../../Atoms/Icons/General/ASk';
+import { Ask } from '../..';
 
 export interface Header {
   title: string;

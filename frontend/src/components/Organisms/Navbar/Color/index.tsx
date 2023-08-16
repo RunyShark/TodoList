@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '../../..';
 import { useAppDispatch, useAppSelector } from '../../../../store';
 import { themeService } from '../../../../service';
