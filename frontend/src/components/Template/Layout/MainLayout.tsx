@@ -15,6 +15,8 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
       controlClient: { isOpenModal },
     },
     theme: {
+      isDark,
+      colorActive,
       primaryColor: { secondary },
     },
   } = useAppSelector((state) => state);
@@ -32,7 +34,13 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
         {children}
         <Button
           className="mainLayout__addTodo"
-          iconEnd={<Plus onClick={closeModal} className="mainLayout__icon" />}
+          iconEnd={
+            <Plus
+              onClick={closeModal}
+              className="mainLayout__icon"
+              colorActive={(!isDark && colorActive) || null}
+            />
+          }
           onClick={openModal}
           backgroundColor={secondary}
         />

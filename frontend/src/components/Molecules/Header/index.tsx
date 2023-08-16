@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { Button } from '..';
 import { useAppSelector } from '../../../store';
+import { Ask } from '../../Atoms/Icons/General/ASk';
 
 export interface Header {
   title: string;
@@ -9,6 +10,8 @@ export interface Header {
 
 export const Header: FC<Header> = ({ title }) => {
   const {
+    isDark,
+    colorActive,
     primaryColor: { secondary },
   } = useAppSelector(({ theme }) => theme);
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +22,7 @@ export const Header: FC<Header> = ({ title }) => {
         <h1 className="header__title">{title}</h1>
         <Button
           className="header__button"
-          iconEnd={<h4 className="header__tooltip">?</h4>}
+          iconEnd={<Ask colorActive={(!isDark && colorActive) || null} />}
           onClick={() => setIsOpen(!isOpen)}
           backgroundColor={secondary}
         />

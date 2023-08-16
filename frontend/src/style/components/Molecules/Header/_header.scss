@@ -19,8 +19,8 @@
 
   &__button {
     border-radius: 50%;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     background: var(--AddButtonNormal);
     transition: 0.5s;
     &:hover {
@@ -37,6 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
   }
 
   &__icon {
