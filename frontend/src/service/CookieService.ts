@@ -18,7 +18,7 @@ class CookieService {
   getCookie({ key }: IGetCookies) {
     const cookie = getCookie(key);
 
-    return JSON.parse(cookie as string);
+    return (cookie && JSON.parse(cookie as string)) || undefined;
   }
 }
 
