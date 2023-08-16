@@ -43,6 +43,11 @@
     }
   }
 
+  &__title {
+    margin: 0;
+    padding: 2rem 0;
+  }
+
   &__select {
     height: 5rem;
     appearance: none;
@@ -71,7 +76,7 @@
 
   &__messageError {
     margin: 0;
-    color: fn.theme('error500');
+    color: fn.theme('error500') !important;
     opacity: 0;
     transition: fn.transition('primary');
     &--active {
