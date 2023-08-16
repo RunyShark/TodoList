@@ -13,10 +13,7 @@ interface IDeleteTodoData {
 
 const deleteTodoData: IDeleteTodoData = {
   title: '¿Estás seguro de que deseas eliminar la tarea?',
-  info: ` Esta acción eliminará permanentemente la tarea. No habrá posibilidad de
-  recuperarla. Antes de confirmar, por favor, asegúrate de revisar
-  cuidadosamente esta acción. En caso de que no desees proceder con la
-  eliminación, puedes salir de esta sección sin realizar cambios.`,
+  info: ` Esta acción eliminará la tarea de forma permanente y no se podrá recuperar. Por favor, revisa con cuidado antes de confirmar. Si no deseas eliminarla, puedes salir sin hacer cambios.`,
 };
 
 export const DeleteTodo: FC<DeleteTodo> = ({ handelAccept, handelCancel }) => (
