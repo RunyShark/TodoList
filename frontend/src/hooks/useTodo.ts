@@ -9,7 +9,7 @@ export const useTodo = () => {
   const queryClient = useQueryClient();
 
   const putTodo = async (_id: string, payload: Partial<Todo>) => {
-    dispatch(isLoading(true));
+    // dispatch(isLoading(true));
     await apiService.https({
       type: HTTP_METHOD.PUT,
       endpoint: `${Endpoint.TODO}/${_id}`,

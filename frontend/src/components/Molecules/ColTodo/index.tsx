@@ -22,6 +22,7 @@ export const ColTodo: FC<ColTodo> = ({ title, todo, col, background }) => {
 
   const onDrop = async (event: DragEvent, col: Col) => {
     const item = dragAndDrop.onDrop(event);
+
     await putTodo(item, { col });
     dispatch(statusChangeTodo({ col, item }));
     dispatch(accommodateTasks());
