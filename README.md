@@ -1,3 +1,16 @@
+### Nota
+Es importante destacar que este proyecto fue desarrollado con el propósito de exhibir mis competencias en HTML, CSS y JavaScript. A pesar de que en la mayoría de los casos los usuarios optan por utilizar bibliotecas populares para implementar funcionalidades como el arrastrar y soltar elementos (drag and drop), decidí tomar un enfoque distinto. Aproximadamente el 95 % del código fue creado sin el uso de bibliotecas externas, con el objetivo de demostrar mi conocimiento profundo en estas tecnologías fundamentales.
+
+En cuanto al manejo del estado, elegí emplear Redux para demostrar mi capacidad de trabajar con un estado global. No obstante, en un contexto de aplicación tan pequeña, habría optado por utilizar el contexto de React debido a su simplicidad y adecuación al alcance del proyecto.
+
+En el backend, desarrollé la estructura siguiendo el patrón de arquitectura Modelo-Vista-Controlador (MVC). Diseñé servicios con responsabilidades únicas, cumpliendo así con el principio SOLID de Responsabilidad. Además, implementé servicios auxiliares (helpers) que se alinean con el principio de Sustitución de Liskov (LSP), asegurando la coherencia y robustez del sistema.
+
+En el front-end, extendí los mismos principios SOLID mencionados previamente. Opté por utilizar la metodología Atomic Design para la organización de los componentes, lo que promueve la modularidad y escalabilidad del código. La gestión del estado global se realizó a través de Redux, continuando con el enfoque de cohesión y mantenibilidad.
+
+En resumen, este proyecto no solo exhibe mi destreza en tecnologías esenciales de desarrollo web, sino también mi capacidad para aplicar principios sólidos de diseño y arquitectura en ambas capas, frontend y backend. Mi objetivo principal fue demostrar un conocimiento profundo y versátil en la creación de aplicaciones web bien estructuradas y eficientes.
+
+
+
 # Lista de Tareas - Guía de Ejecución
 
 Este repositorio contiene el código fuente para una aplicación de Todo List como requerimiento de prueba tecnica.
