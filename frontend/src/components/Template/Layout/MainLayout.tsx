@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { Children } from '../../../interfaces';
-import { Button, Footer, FormTodo, Modal, Navbar } from '../..';
+import { Button, FormTodo, Modal, Navbar } from '../..';
 import { useModalControl } from '../../../hooks';
 import { useAppSelector } from '../../../store';
 import { Plus } from '../..';
@@ -17,7 +17,7 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
     theme: {
       isDark,
       colorActive,
-      primaryColor: { secondary },
+      primaryColor: { tertiary },
     },
   } = useAppSelector((state) => state);
 
@@ -42,13 +42,12 @@ export const MainLayout: FC<MainLayout> = ({ children }) => {
             />
           }
           onClick={openModal}
-          backgroundColor={secondary}
+          backgroundColor={tertiary}
         />
       </div>
       <Modal open={isModalOpen} closeModal={closeModal}>
         <FormTodo />
       </Modal>
-      <Footer />
     </div>
   );
 };

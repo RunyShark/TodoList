@@ -3,7 +3,7 @@
 @import '../../global/baseTheme';
 
 .mainLayout {
-  min-height: calc(100vh - 5vh);
+  height: calc(100vh - 10vh);
 
   &__addTodo {
     position: fixed;

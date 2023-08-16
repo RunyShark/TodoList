@@ -30,7 +30,7 @@ export const Theme = () => {
     <div className={`theme ${isOpenSettings ? 'theme__active' : ''}`.trim()}>
       <div className="theme__config">
         <div className="theme__configHeader">
-          <h5>Setting</h5>
+          <h5>Configuración</h5>
           <div className="theme__configHeader--icon">
             <Reset className="theme__icon" />
             <Xmark
@@ -41,7 +41,7 @@ export const Theme = () => {
         </div>
         <div className="theme__containerButtons">
           <div className="theme__configMode">
-            <h6>Mode</h6>
+            <h6>Tema</h6>
             <div className="theme__buttons">
               <Button
                 onClick={setLightTheme}
