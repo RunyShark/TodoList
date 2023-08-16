@@ -6,16 +6,24 @@ interface DeleteTodo {
   handelAccept: () => void;
 }
 
+interface IDeleteTodoData {
+  title: string;
+  info: string;
+}
+
+const deleteTodoData: IDeleteTodoData = {
+  title: '¿Estás seguro de que deseas eliminar la tarea?',
+  info: ` Esta acción eliminará permanentemente la tarea. No habrá posibilidad de
+  recuperarla. Antes de confirmar, por favor, asegúrate de revisar
+  cuidadosamente esta acción. En caso de que no desees proceder con la
+  eliminación, puedes salir de esta sección sin realizar cambios.`,
+};
+
 export const DeleteTodo: FC<DeleteTodo> = ({ handelAccept, handelCancel }) => (
   <div className="deleteTodo">
     <div>
-      <h4>¿Estás seguro de que deseas eliminar la tarea?</h4>
-      <p>
-        Esta acción eliminará permanentemente la tarea. No habrá posibilidad de
-        recuperarla. Antes de confirmar, por favor, asegúrate de revisar
-        cuidadosamente esta acción. En caso de que no desees proceder con la
-        eliminación, puedes salir de esta sección sin realizar cambios.
-      </p>
+      <h4>{deleteTodoData.title}</h4>
+      <p>{deleteTodoData.info}</p>
     </div>
 
     <div className="deleteTodo__containerButtons">

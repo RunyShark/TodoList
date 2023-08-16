@@ -5,9 +5,9 @@ import {
   Todo,
   accommodateTasks,
   statusChangeTodo,
-} from '../../../store/slices/Todo/TodoSlice';
+  useAppDispatch,
+} from '../../../store';
 import { DragEvent, dragAndDrop } from '../../../service';
-import { useAppDispatch } from '../../../store/hooks';
 import { useTodo } from '../../../hooks';
 export interface ColTodo {
   title: string;
@@ -17,14 +17,16 @@ export interface ColTodo {
 }
 
 export const ColTodo: FC<ColTodo> = ({ title, todo, col, background }) => {
-  const { putTodo } = useTodo();
   const dispatch = useAppDispatch();
+  const { putTodo } = useTodo();
+
   const onDrop = async (event: DragEvent, col: Col) => {
     const item = dragAndDrop.onDrop(event);
     await putTodo(item, { col });
     dispatch(statusChangeTodo({ col, item }));
     dispatch(accommodateTasks());
   };
+
   return (
     <div
       className="todoSection__col"

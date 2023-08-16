@@ -1,11 +1,8 @@
 import { FC, useState } from 'react';
-import { Todo } from '../../../store/slices/Todo/TodoSlice';
-import { dragAndDrop } from '../../../service';
-import { DeleteTodo, Modal, ViewTodo } from '../..';
+import { Todo } from '../../../store';
 import { useModalControl, useTodo } from '../../../hooks';
-import { EditTodo } from '../../Atoms/EditTodo';
-import { Plus } from '../../Atoms/Icons';
-import { Edit } from '../../Atoms/Icons/General/Edit';
+import { dragAndDrop } from '../../../service';
+import { DeleteTodo, Modal, ViewTodo, EditTodo, Edit, Plus } from '../..';
 
 const initialStateAction = {
   edit: false,
@@ -18,10 +15,15 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
   const [action, setAction] = useState(initialStateAction);
   const { deleteTodo } = useTodo();
 
-  const handelAccept = () => (
-    deleteTodo(_id), closeModal(), setAction(initialStateAction)
-  );
-  const handelCancel = () => (closeModal(), setAction(initialStateAction));
+  const handelAccept = () => {
+    deleteTodo(_id);
+    closeModal();
+    setAction(initialStateAction);
+  };
+  const handelCancel = () => {
+    closeModal();
+    setAction(initialStateAction);
+  };
 
   const viewModal = () => {
     setAction({ ...action, view: true });
@@ -37,6 +39,7 @@ export const TodoItem: FC<Todo> = ({ title, description, _id, col }) => {
     setAction({ ...action, delete: true });
     openModal();
   };
+
   return (
     <div
       className="todoSection__todo"
