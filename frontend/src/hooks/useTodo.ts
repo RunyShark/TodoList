@@ -9,13 +9,13 @@ export const useTodo = () => {
   const queryClient = useQueryClient();
 
   const putTodo = async (_id: string, payload: Partial<Todo>) => {
-    queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
     dispatch(isLoading(true));
     await apiService.https({
       type: HTTP_METHOD.PUT,
       endpoint: `${Endpoint.TODO}/${_id}`,
       payload,
     });
+    dispatch(isLoading(false));
     queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
   };
 
@@ -25,6 +25,7 @@ export const useTodo = () => {
       type: HTTP_METHOD.DELETE,
       endpoint: `${Endpoint.TODO}/${_id}`,
     });
+
     queryClient.invalidateQueries({ queryKey: [CACHE_KEY.TODO] });
   };
 
