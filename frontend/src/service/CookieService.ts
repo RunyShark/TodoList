@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { setCookie, getCookies } from 'cookies-next';
-import { OptionsType, TmpCookiesObj } from 'cookies-next/lib/types';
+import { setCookie, getCookie } from 'cookies-next';
+import { OptionsType } from 'cookies-next/lib/types';
 
 export enum COOKIE_KEY {
   THEME = 'theme',
@@ -15,8 +15,10 @@ class CookieService {
     setCookie(key, data, options);
   }
 
-  getCookies(options: IGetCookies): TmpCookiesObj {
-    return getCookies(options);
+  getCookie({ key }: IGetCookies) {
+    const cookie = getCookie(key);
+    console.log(JSON.parse(cookie as string));
+    return JSON.parse(cookie as string);
   }
 }
 

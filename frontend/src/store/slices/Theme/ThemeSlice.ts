@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { TThemeService } from '../../../service';
 
 export interface Theme {
   isDark: boolean;
@@ -75,15 +76,37 @@ export const ThemeSlice = createSlice({
     isOpenSettingTheme(state) {
       state.controlUser.isOpenSettings = !state.controlUser.isOpenSettings;
     },
-    seTheme(state, { payload }: PayloadAction<Theme>) {
-      state = payload;
+
+    seTheme(
+      state,
+      {
+        payload: {
+          colorActive,
+          isDark,
+          paletsColor,
+          primaryColor,
+          secondaryColor,
+        },
+      }: PayloadAction<TThemeService>
+    ) {
+      state = {
+        ...state,
+        colorActive,
+        isDark,
+        paletsColor,
+        primaryColor,
+        secondaryColor,
+      };
     },
+
     darkTheme(state) {
       state.isDark = true;
     },
+
     lightTheme(state) {
       state.isDark = false;
     },
+
     setColors(
       state,
       { payload }: PayloadAction<{ primaryColor: Color; secondaryColor: Color }>

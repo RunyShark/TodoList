@@ -1,52 +1,28 @@
 import { COOKIE_KEY, cookieService } from '.';
-import { Theme, Color, ColorTheme } from '../store/slices/Theme/ThemeSlice';
+import { defaultTheme } from '../data';
+import { Theme, Color } from '../store/slices/Theme/ThemeSlice';
 
 interface GetColor {
   primaryColor: Color;
   secondaryColor: Color;
 }
 
+export type TThemeService = Omit<Theme, 'controlUser'>;
+
 export class ThemeService {
   private html = document.querySelector('html')?.classList;
-  private theme: Omit<Theme, 'controlUser'> =
-    {
-      isDark: true,
-      primaryColor: {
-        primary: '',
-        secondary: '',
-        tertiary: '',
-      },
-      secondaryColor: {
-        primary: '',
-        secondary: '',
-        tertiary: '',
-      },
-      colorActive: {
-        primary: '#66c61c',
-        secondary: '#85e13a',
-      },
-      paletsColor: [
-        {
-          primary: ColorTheme.greenLight,
-          secondary: 'rgba(102, 198, 28, 0.1)',
-        },
-        { primary: ColorTheme.orangeDark, secondary: 'rgba(255, 68, 5,0.1)' },
-        { primary: ColorTheme.blue, secondary: 'rgba(46, 144, 250,0.1)' },
-        { primary: ColorTheme.violet, secondary: 'rgba(135, 91, 247,0.1)' },
-        { primary: ColorTheme.fuchsia5, secondary: 'rgba(212, 68, 241,0.1)' },
-        { primary: ColorTheme.yellow, secondary: 'rgba(234, 170, 8, 0.1)' },
-        { primary: ColorTheme.error, secondary: 'rgba(217, 45, 32,0.1)' },
-        { primary: ColorTheme.teal, secondary: 'rgb(21, 183, 158,0.1)' },
-        { primary: ColorTheme.rose, secondary: 'rgba(246, 61, 104,0.1)' },
-      ],
-    } || cookieService.getCookies({ key: COOKIE_KEY.THEME });
+  private theme: TThemeService =
+    cookieService.getCookie({ key: COOKIE_KEY.THEME }) || defaultTheme;
 
-  get getTheme(): Theme {
+  get getTheme(): TThemeService {
     return this.theme;
   }
 
   private saveTheme(): void {
-    cookieService.setCookie(COOKIE_KEY.THEME, this.theme);
+    cookieService.setCookie(
+      COOKIE_KEY.THEME,
+      JSON.stringify({ ...this.theme })
+    );
   }
 
   public getColor(): GetColor {
@@ -107,7 +83,15 @@ export class ThemeService {
       tertiary: this.tertiary(color),
     };
 
+    this.theme.colorActive = {
+      primary: this.primary(color),
+      secondary: this.primary(color),
+    };
     this.saveTheme();
+  }
+
+  public init() {
+    if (this.theme.isDark) this.setDarkTheme();
   }
 }
 
