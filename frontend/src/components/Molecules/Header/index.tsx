@@ -29,11 +29,11 @@ export const Header: FC<Header> = ({ title }) => {
       </div>
 
       <p className={`header__helper ${isOpen && 'header__helper--active'}`}>
-        Se trata de una herramienta de gestión de tareas con tableros visuales.
-        Los tableros son 'Tareas Por Hacer', 'Tareas en Progreso' y 'Tareas
-        Realizadas'. Puedes mover tareas entre ellos arrastrando y soltando.
-        Doble clic para más detalles, 'x' para eliminar, 'libreta' para editar.
-        Agregar tareas con el botón '+'.
+        Es una herramienta de gestión de tareas con tableros visuales. Los
+        tableros son 'Por Hacer', 'En Progreso' y 'Realizadas'. Puedes mover
+        tareas entre ellos arrastrando y soltando. Doble clic para más detalles,
+        'x' para eliminar, 'libreta' para editar. Agrega tareas con el botón
+        '+'.
       </p>
     </header>
   );

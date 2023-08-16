@@ -18,7 +18,7 @@ export const Color = () => {
 
   return (
     <div className="theme__configMode">
-      <h6>Stretch</h6>
+      <h6>Colores del app</h6>
       <div className="theme__buttonsColor">
         {paletsColor.map((color) => {
           const validation = primary === color.primary;

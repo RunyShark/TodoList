@@ -12,10 +12,10 @@ export const ViewTodo: FC<EditTodo> = ({
       Titulo: <span className="viewTodo__campo--value">{title}</span>
     </p>
     <p className="viewTodo__campo">
-      description: <span className="viewTodo__campo--value">{description}</span>
+      Description: <span className="viewTodo__campo--value">{description}</span>
     </p>
     <p className="viewTodo__campo">
-      estado: <span className="viewTodo__campo--value">{col}</span>
+      Estado: <span className="viewTodo__campo--value">{col}</span>
     </p>
   </div>
 );

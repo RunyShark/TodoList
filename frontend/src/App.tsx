@@ -31,9 +31,9 @@ export const App = () => {
 
   //Cada responsabilidad debe ser manejada por un useEffect individual, tal como es recomendado por el equipo de React.
   useEffect(() => {
-    console.log('query.data', query.data);
+    console.log('query.data1', query.data);
     if (query.data) {
-      console.log('query.data', query.data);
+      console.log('query.data2', query.data);
       dispatch(isLoading(false));
       dispatch(hydrateTodoList(query?.data || []));
       dispatch(accommodateTasks());
